@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ما الذي يجعل طالباً يختار الهندسة الصناعية؟ | جامعة السلطان قابوس</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0A1F3D; --navy-2:#102C55; --blue-700:#14448A; --blue-500:#1F6FD1; --blue-400:#4C8FE0; --blue-300:#8EBBF2; --blue-100:#E6EFFB;
+  --gold:#F2B544; --gold-ink:#5B3D00;
+  --ink:#0B2140; --ink-2:#4B6280; --line:#D6E1EE; --paper:#F6F9FD; --card:#FFFFFF; --tint:#EAF2FC;
+  --ok:#1E8E62; --bad:#C9443A; --okbg:#E5F4EC; --badbg:#FBEAE8;
+  --ease-out:cubic-bezier(0.23,1,0.32,1); --ease-io:cubic-bezier(0.77,0,0.175,1);
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+  font-family:"IBM Plex Sans Arabic","Segoe UI","Noto Sans Arabic",Tahoma,Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ink:#E6EEF8; --ink-2:#9CB2CC; --line:#1E3555; --paper:#081427; --card:#0F2140; --tint:#0D1D38; --blue-100:#14294A;
+    --ok:#4CC28F; --bad:#EE7B70; --okbg:#10301F; --badbg:#3A1E1B;
+  }
+}
+:root[data-theme="dark"]{
+  --ink:#E6EEF8; --ink-2:#9CB2CC; --line:#1E3555; --paper:#081427; --card:#0F2140; --tint:#0D1D38; --blue-100:#14294A;
+  --ok:#4CC28F; --bad:#EE7B70; --okbg:#10301F; --badbg:#3A1E1B;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+body{overflow-x:clip;margin:0;color:var(--ink);background:var(--paper);line-height:1.65;font-size:16px;-webkit-font-smoothing:antialiased}
+button,input,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--blue-400);outline-offset:3px}
+.hidden{display:none!important}
+.container{max-width:1080px;margin:0 auto;padding:0 20px}
+.narrow{max-width:760px;margin:0 auto;padding:0 20px}
+
+/* ---------- top bar ---------- */
+.topbar{position:sticky;top:0;z-index:20;padding-top:env(safe-area-inset-top,0px);background:color-mix(in srgb,var(--navy) 82%,transparent);backdrop-filter:saturate(1.4) blur(14px);-webkit-backdrop-filter:saturate(1.4) blur(14px);color:#fff;border-bottom:1px solid rgba(255,255,255,.08)}
+.topbar .container{display:flex;align-items:center;justify-content:space-between;height:56px;gap:12px}
+.brand{font-weight:600;font-size:14.5px;letter-spacing:.01em;display:flex;gap:10px;align-items:center}
+.brand b{font-weight:700}
+.brand span{opacity:.7;font-weight:400}
+.topbar button{background:transparent;border:1px solid rgba(255,255,255,.35);color:#fff;border-radius:999px;padding:5px 14px;cursor:pointer;font-size:14px;transition:background .16s ease}
+.topbar button:hover{background:rgba(255,255,255,.1)}
+
+/* ---------- buttons ---------- */
+.btn{text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:8px;border:none;border-radius:999px;padding:13px 26px;cursor:pointer;font-weight:600;font-size:16px;white-space:nowrap;
+  background:var(--blue-500);color:#fff;transition:transform .14s var(--ease-out),background .18s ease,box-shadow .18s ease;box-shadow:0 6px 18px -8px color-mix(in srgb,var(--blue-500) 70%,transparent)}
+.btn:hover{background:var(--blue-700)}
+.btn:active{transform:scale(.97)}
+.btn.ghost{background:transparent;color:inherit;box-shadow:inset 0 0 0 1.5px currentColor}
+.btn.ghost:hover{background:color-mix(in srgb,currentColor 8%,transparent)}
+.btn.light{background:#fff;color:var(--navy);box-shadow:none}
+.btn.light:hover{background:var(--blue-100)}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+
+/* ---------- hero ---------- */
+.hero{position:relative;overflow:hidden;color:#fff;background:
+  radial-gradient(900px 520px at 75% 20%, rgba(76,143,224,.45), transparent 60%),
+  radial-gradient(700px 500px at 10% 90%, rgba(20,68,138,.65), transparent 60%),
+  linear-gradient(180deg,var(--navy) 0%,var(--navy-2) 100%);
+  min-height:calc(88dvh - 56px);display:flex;align-items:center}
+.hero .container{display:grid;grid-template-columns:1.25fr 1fr;gap:40px;align-items:center;padding-top:48px;padding-bottom:56px}
+.hero h1{font-size:clamp(32px,4.4vw,52px);line-height:1.15;font-weight:700;margin:0 0 18px;letter-spacing:-.015em}
+.hero p{font-size:clamp(17px,1.6vw,20px);color:#C9DAF1;max-width:34ch;margin:0 0 30px;font-weight:300}
+.hero .ctas{display:flex;gap:12px;flex-wrap:wrap}
+.hero .btn.ghost{color:#fff}
+.scale-wrap{position:relative}
+.scale-svg{width:100%;height:auto;display:block;overflow:visible}
+.scale-svg .pan{cursor:pointer}
+.scale-svg .pan:hover .pan-dish{fill:rgba(255,255,255,.16)}
+.scale-hint{text-align:center;color:#9FBCE6;font-size:14px;margin-top:6px}
+.scale-svg text{font-family:inherit}
+
+/* ---------- reveal ---------- */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s var(--ease-out),transform .7s var(--ease-out)}
+.reveal.in{opacity:1;transform:none}
+
+/* ---------- sections ---------- */
+section.block{padding:96px 0}
+.block h2{font-size:clamp(28px,3.6vw,42px);line-height:1.2;margin:0 0 14px;letter-spacing:-.01em}
+.block .sub{font-size:18px;color:var(--ink-2);max-width:60ch;margin:0 0 48px}
+
+/* steps */
+.steps{display:flex;flex-direction:column;gap:20px}
+.step{display:grid;grid-template-columns:260px 1fr;gap:36px;align-items:center;padding:28px;border-radius:20px;background:var(--card);border:1px solid var(--line)}
+.step h3{font-size:24px;margin:0 0 6px}
+.step p{margin:0;color:var(--ink-2);max-width:52ch}
+.step .ill{border-radius:14px;background:linear-gradient(160deg,var(--tint),color-mix(in srgb,var(--blue-300) 22%,var(--card)));aspect-ratio:13/9;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.ill svg{width:88%;height:auto}
+/* step 1: moving dot */
+.ill .mv{transform:translateX(0);transition:transform 1s var(--ease-io) .3s}
+.step.in .ill .mv{transform:translateX(-58px)}
+html[dir="rtl"] .step.in .ill .mv{transform:translateX(58px)}
+.ill .win{transition:fill .5s ease 1.1s}
+.step.in .ill .win{fill:var(--blue-500)}
+.step.in .ill .wintext{fill:#fff}
+.ill .wintext{transition:fill .5s ease 1.1s}
+/* step 2: draw check */
+.ill .edge{stroke-dasharray:120;stroke-dashoffset:120;transition:stroke-dashoffset .8s var(--ease-out)}
+.step.in .ill .edge{stroke-dashoffset:0}
+.step.in .ill .edge.e2{transition-delay:.35s}.step.in .ill .edge.e3{transition-delay:.7s}
+.ill .chk{stroke-dasharray:40;stroke-dashoffset:40;transition:stroke-dashoffset .5s var(--ease-out) 1.3s}
+.step.in .ill .chk{stroke-dashoffset:0}
+.ill .chkbg{opacity:0;transform-origin:center;transform-box:fill-box;transform:scale(.6);transition:opacity .3s ease 1.15s,transform .4s var(--ease-out) 1.15s}
+.step.in .ill .chkbg{opacity:1;transform:none}
+/* step 3: bars */
+.ill .bar3{transform-origin:bottom;transform-box:fill-box;transform:scaleY(.05);transition:transform 1s var(--ease-out)}
+.step.in .ill .bar3{transform:none}
+.step.in .ill .b2{transition-delay:.15s}.step.in .ill .b3{transition-delay:.3s}
+
+/* demo */
+.demo{background:linear-gradient(180deg,var(--paper),var(--tint))}
+.demo-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:28px;align-items:start}
+.demo-out{position:sticky;top:76px;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px}
+.demo-out h3{margin:0 0 4px;font-size:18px}
+.badge{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:4px 12px;font-size:13.5px;font-weight:600;transition:background .2s ease,color .2s ease}
+.badge.ok{background:var(--okbg);color:var(--ok)} .badge.bad{background:var(--badbg);color:var(--bad)}
+.demo-note{font-size:14px;color:var(--ink-2);margin-top:14px}
+
+/* comparison card (shared by demo + survey) */
+.q{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px 18px 14px;margin:14px 0;transition:border-color .2s ease,box-shadow .2s ease}
+.q:focus-within{box-shadow:0 0 0 4px color-mix(in srgb,var(--blue-400) 18%,transparent)}
+.q-head{display:flex;justify-content:flex-end}
+.q-num{font-size:13px;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.pair{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:10px;margin:2px 0 12px}
+.item{font-weight:600;font-size:16.5px;line-height:1.35;transition:color .18s ease}
+.item.b{text-align:end}
+.item.win{color:var(--blue-500)}
+.vs{font-size:13px;color:var(--ink-2)}
+.item details{font-weight:inherit}
+.item summary{cursor:pointer;list-style:none;display:inline}
+.item summary::-webkit-details-marker{display:none}
+.item summary .t{border-bottom:1.5px dotted color-mix(in srgb,currentColor 55%,transparent)}
+.item .def{font-size:13.5px;color:var(--ink-2);font-weight:400;margin-top:4px}
+.scale{display:flex;align-items:center;justify-content:space-between;gap:2px;padding:6px 2px 2px;position:relative}
+.scale::before{content:"";position:absolute;inset-inline:8px;top:50%;height:2px;background:linear-gradient(90deg,var(--blue-300),var(--line) 40%,var(--line) 60%,var(--blue-300));transform:translateY(-1px)}
+.stop{position:relative;z-index:1;display:flex;flex:1 1 0;min-width:0;justify-content:center;cursor:pointer;padding:6px 0;--k:1}
+.stop input{position:absolute;opacity:0;pointer-events:none}
+.stop span{display:block;flex:none;aspect-ratio:1;width:calc(var(--sz)*var(--k)*1px);height:calc(var(--sz)*var(--k)*1px);border-radius:50%;background:var(--card);border:2px solid color-mix(in srgb,var(--ink-2) 70%,transparent);transition:transform .16s var(--ease-out),background .16s ease-out,border-color .16s ease-out,box-shadow .16s ease-out}
+.stop:hover span{border-color:var(--blue-400)}
+.stop:active span{transform:scale(.88)}
+.stop input:checked+span{background:var(--blue-500);border-color:var(--blue-500);transform:scale(1.18);box-shadow:0 0 0 5px color-mix(in srgb,var(--blue-500) 22%,transparent)}
+.stop input:focus-visible+span{outline:3px solid var(--blue-400);outline-offset:3px}
+.stop.eq span{border-radius:4px}
+.scale-ends{display:grid;grid-template-columns:1fr auto 1fr;font-size:12.5px;color:var(--ink-2);margin-top:2px}
+.scale-ends span:last-child{text-align:end}
+.reading{min-height:1.6em;margin-top:8px;font-size:14.5px;font-weight:500}
+.reading.empty{color:var(--ink-2);font-weight:400}
+.q.flag{border-color:var(--bad)} .q.flag .hint{display:block}
+.hint{display:none;margin-top:8px;font-size:13.5px;color:var(--bad)}
+
+/* bars */
+.bars{margin:12px 0}
+.bar{display:grid;grid-template-columns:minmax(120px,40%) 1fr 56px;gap:10px;align-items:center;margin:9px 0;font-size:14.5px}
+.bar-track{height:10px}
+.bar-fill{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--blue-400),var(--blue-500));transition:width .45s var(--ease-out)}
+html[dir="rtl"] .bar-fill{background:linear-gradient(270deg,var(--blue-400),var(--blue-500))}
+.bar:first-child .bar-fill{background:var(--gold)}
+.bar b{font-variant-numeric:tabular-nums;text-align:end}
+.cr{font-size:14px;color:var(--ink-2);font-variant-numeric:tabular-nums}
+
+/* what you compare */
+.lists{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+.lists h3{font-size:20px;margin:0 0 4px}
+.lists .muted{color:var(--ink-2);margin:0 0 18px;font-size:15px}
+.lists ol{list-style:none;margin:0;padding:0}
+.lists li{padding:14px 0;border-top:1px solid var(--line)}
+.lists li b{display:block;font-weight:600}
+.lists li span{color:var(--ink-2);font-size:14.5px}
+.facts{display:flex;flex-wrap:wrap;gap:40px;margin-top:56px}
+.fact b{display:block;font-size:34px;line-height:1.1;font-weight:700;color:var(--blue-500);font-variant-numeric:tabular-nums}
+.fact span{color:var(--ink-2);font-size:15px}
+
+/* final band */
+.band{color:#fff;text-align:center;padding:88px 0;background:radial-gradient(700px 360px at 50% 0%,rgba(76,143,224,.5),transparent 70%),linear-gradient(180deg,var(--navy-2),var(--navy))}
+.band h2{font-size:clamp(28px,4vw,44px);margin:0 0 10px}
+.band p{color:#C9DAF1;margin:0 auto 28px;max-width:46ch}
+
+/* survey */
+#survey{padding:28px 0 72px}
+.ruler{margin:8px 0 6px}
+.ruler-track{position:relative;height:6px;border-radius:999px;background:var(--blue-100);overflow:hidden}
+.ruler-fill{position:absolute;top:0;bottom:0;inset-inline-start:0;background:linear-gradient(90deg,var(--blue-400),var(--blue-500));border-radius:999px;transition:width .4s var(--ease-out)}
+.ruler-label{display:flex;justify-content:space-between;font-size:13px;color:var(--ink-2);margin-top:8px}
+#app h1{font-size:clamp(26px,3.4vw,34px);line-height:1.25;margin:26px 0 10px;letter-spacing:-.01em}
+#app h2{font-size:21px;margin:0 0 8px}
+p.lead{font-size:17px;color:var(--ink-2);max-width:62ch;margin:0 0 14px}
+.note{font-size:14px;color:var(--ink-2)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px;margin:16px 0}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 4px}
+.chip{position:relative}
+.chip input{position:absolute;opacity:0}
+.chip span{display:inline-block;padding:9px 16px;border:1.5px solid var(--line);border-radius:999px;cursor:pointer;background:var(--card);transition:background .16s ease,color .16s ease,border-color .16s ease,transform .14s var(--ease-out)}
+.chip span:active{transform:scale(.97)}
+.chip input:checked+span{border-color:var(--blue-500);background:var(--blue-500);color:#fff}
+.chip input:focus-visible+span{outline:3px solid var(--blue-400);outline-offset:2px}
+label.f{display:block;font-weight:600;margin-top:12px}
+.btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.err{color:var(--bad);font-size:14px;margin-top:8px;min-height:1.4em}
+.verdict{border-radius:14px;padding:14px 16px;margin:14px 0;font-weight:500}
+.verdict.ok{background:var(--okbg);color:var(--ok)} .verdict.bad{background:var(--badbg);color:var(--bad)}
+textarea.code{width:100%;min-height:72px;border:1.5px dashed var(--blue-400);border-radius:14px;padding:14px;background:var(--tint);font-size:15px;direction:ltr;text-align:left;font-variant-numeric:tabular-nums;word-break:break-all}
+textarea.paste{width:100%;min-height:160px;border:1px solid var(--line);border-radius:14px;padding:12px;background:var(--card);direction:ltr;text-align:left;font-size:14px}
+.tablewrap{overflow-x:auto;margin:10px 0}
+table{border-collapse:collapse;width:100%;font-size:14px;font-variant-numeric:tabular-nums}
+th,td{border-bottom:1px solid var(--line);padding:8px 10px;text-align:center;white-space:nowrap}
+th{font-weight:600;color:var(--ink-2)}
+td.yes{color:var(--ok);font-weight:600} td.no{color:var(--bad);font-weight:600}
+.done-mark{width:72px;height:72px;margin:28px 0 0}
+.done-mark circle{fill:var(--blue-500);transform-origin:center;transform-box:fill-box;animation:pop .45s var(--ease-out) both}
+.done-mark path{stroke-dasharray:40;stroke-dashoffset:40;animation:draw .4s var(--ease-out) .25s forwards}
+@keyframes pop{from{transform:scale(.6);opacity:0}to{transform:none;opacity:1}}
+@keyframes draw{to{stroke-dashoffset:0}}
+#app.enter{animation:enter .24s var(--ease-out)}
+@keyframes enter{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+footer.foot{border-top:1px solid var(--line);padding:22px 0 calc(22px + env(safe-area-inset-bottom,0px));font-size:13.5px;color:var(--ink-2)}
+footer.foot .container{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.link{background:none;border:none;color:var(--blue-500);cursor:pointer;padding:0;text-decoration:underline;text-underline-offset:3px}
+
+@media (max-width:860px){
+  .stop{--k:.8}
+  .hero .container{grid-template-columns:1fr;text-align:start;padding-top:32px}
+  .scale-wrap{max-width:440px;margin:0 auto;width:100%}
+  .step{grid-template-columns:1fr;gap:18px;padding:20px}
+  .demo-grid{grid-template-columns:1fr}
+  .demo-out{position:static}
+  .lists{grid-template-columns:1fr;gap:36px}
+  section.block{padding:72px 0}
+}
+@media (max-width:520px){
+  .stop{--k:.62}
+  .brand span{display:none}
+  .bar{grid-template-columns:1fr 56px}
+  .bar .bar-track{grid-column:1 / -1;order:3}
+  .facts{gap:28px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{transition:none!important;animation:none!important;scroll-behavior:auto!important}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<header class="topbar"><div class="container">
+  <div class="brand" id="brand"></div>
+  <button id="langBtn" type="button"></button>
+</div></header>
+
+<div id="landing"></div>
+
+<div id="survey" class="hidden"><div class="narrow">
+  <div class="ruler" id="ruler" aria-hidden="true">
+    <div class="ruler-track"><div class="ruler-fill" id="rulerFill"></div></div>
+    <div class="ruler-label"><span id="rulerStep"></span><span id="rulerCount"></span></div>
+  </div>
+  <main id="app" tabindex="-1"></main>
+</div></div>
+
+<footer class="foot"><div class="container">
+  <span id="footNote"></span>
+  <button class="link" id="researcherLink" type="button"></button>
+</div></footer>
+<script>
+(function(){
+"use strict";
+/* ===== SETTINGS: paste your Google Apps Script Web App URL between the quotes ===== */
+var SHEET_URL = "https://script.google.com/macros/s/AKfycbxj8UJIO-E_nbIK6eYfC5sePCjRpVSDkTl6gsQ5fdJtusC7rnSlipDMn4YJYThFj5nC/exec";
+/* ================================================================================ */
+var RIx={3:0.58,4:0.90,5:1.12,6:1.24};
+function pairsOf(n){var P=[];for(var i=0;i<n;i++)for(var j=i+1;j<n;j++)P.push([i,j]);return P;}
+var N=6, PAIRS=pairsOf(6), DPAIRS=pairsOf(3);
+
+var CRIT=[
+ {c:"C1",en:"Personal interest & fit",ar:"الاهتمام الشخصي والملاءمة",den:"Interest in the field, confidence in maths and science, expected difficulty, and whether the field suits the student.",dar:"الاهتمام بالمجال، والثقة في الرياضيات والعلوم، والصعوبة المتوقعة، ومدى ملاءمة التخصص للطالب."},
+ {c:"C2",en:"Career prospects",ar:"الآفاق المهنية",den:"Job opportunities and security, salary, internships and industry links, alignment with Oman Vision 2040.",dar:"فرص العمل والأمان الوظيفي، والراتب، والتدريب والارتباط بالصناعة، والتوافق مع رؤية عُمان 2040."},
+ {c:"C3",en:"Social influences",ar:"التأثيرات الاجتماعية",den:"Advice of family, friends, teachers and counsellors, current students and alumni, and online opinions.",dar:"رأي الأسرة والأصدقاء والمعلمين والمرشدين، والطلاب الحاليين والخريجين، والآراء على الإنترنت."},
+ {c:"C4",en:"Program quality & content",ar:"جودة البرنامج ومحتواه",den:"Reputation of the IE program, curriculum and hands-on projects, ABET accreditation, faculty, research.",dar:"سمعة برنامج الهندسة الصناعية، والمناهج والمشاريع العملية، واعتماد ABET، وأعضاء هيئة التدريس، والبحث العلمي."},
+ {c:"C5",en:"University image & environment",ar:"صورة الجامعة وبيئتها",den:"Reputation of SQU, location, campus life and facilities, studying in English.",dar:"سمعة جامعة السلطان قابوس، والموقع، والحياة الجامعية والمرافق، والدراسة باللغة الإنجليزية."},
+ {c:"C6",en:"Financial considerations",ar:"الاعتبارات المالية",den:"Cost of study, allowances, financial support.",dar:"تكلفة الدراسة، والمخصصات، والدعم المالي."}
+];
+var CHAN=[
+ {c:"B1",en:"Short promotional video",ar:"فيديو تعريفي قصير",den:"A 2-3 minute video about IE on YouTube or social media.",dar:"فيديو مدته 2-3 دقائق عن الهندسة الصناعية على يوتيوب أو وسائل التواصل."},
+ {c:"B2",en:"Social media accounts & posts",ar:"حسابات ومنشورات التواصل الاجتماعي",den:"Regular non-video posts on Instagram, X, TikTok, Snapchat.",dar:"منشورات منتظمة (غير الفيديو) على إنستغرام وإكس وتيك توك وسناب شات."},
+ {c:"B3",en:"Informative content",ar:"المحتوى المعلوماتي",den:"Articles, infographics and guides explaining the field and careers.",dar:"مقالات وإنفوجرافيك وأدلة تشرح التخصص ومساراته المهنية."},
+ {c:"B4",en:"Department website",ar:"موقع القسم الإلكتروني",den:"Official IE pages on the SQU website.",dar:"صفحات قسم الهندسة الصناعية الرسمية في موقع الجامعة."},
+ {c:"B5",en:"School visits & open days",ar:"الزيارات المدرسية والأيام المفتوحة",den:"In-person visits to schools and campus open days.",dar:"زيارات للمدارس وأيام مفتوحة في الجامعة."},
+ {c:"B6",en:"Live online sessions",ar:"الجلسات المباشرة عبر الإنترنت",den:"Webinars or online Q&A with IE students and faculty.",dar:"ندوات وجلسات أسئلة وأجوبة مباشرة مع طلاب وأساتذة التخصص."}
+];
+var DEMO=[CRIT[1],CRIT[0],CRIT[2]];
+var GROUPS=[{k:"F",en:"Faculty member",ar:"عضو هيئة تدريس"},{k:"G",en:"Recent IE graduate",ar:"خريج حديث من الهندسة الصناعية"},{k:"S",en:"Final-year IE student",ar:"طالب سنة أخيرة في الهندسة الصناعية"}];
+var GENDERS=[{k:"M",en:"Male",ar:"ذكر"},{k:"W",en:"Female",ar:"أنثى"}];
+var INTENS={2:{ar:"أهم بقليل",en:"slightly more important"},3:{ar:"أهم بدرجة متوسطة",en:"moderately more important"},4:{ar:"أهم بين المتوسط والقوي",en:"moderately-to-strongly more important"},5:{ar:"أهم بقوة",en:"strongly more important"},6:{ar:"أهم بين القوي والقوي جداً",en:"strongly-to-very-strongly more important"},7:{ar:"أهم بقوة كبيرة",en:"very strongly more important"},8:{ar:"أهم بين القوي جداً والمطلق",en:"very-to-extremely more important"},9:{ar:"أهم بشكل مطلق",en:"extremely more important"}};
+
+var T={
+ ar:{brandA:"مشروع تخرج",brandB:"الهندسة الصناعية، جامعة السلطان قابوس",lang:"English",
+  heroH:"ما الذي يجعل طالباً يختار الهندسة الصناعية؟",
+  heroP:"شاركنا خبرتك في مقارنات قصيرة. إجاباتك ستبني رسالة أدق لطلاب المدارس في عُمان.",
+  start:"ابدأ الاستبيان",how:"كيف يعمل",scaleHint:"اضغط على إحدى الكفتين لتزيد وزنها",
+  panA:"الآفاق المهنية",panB:"الاهتمام الشخصي",
+  howH:"ثلاث خطوات بسيطة",howP:"نستخدم طريقة التحليل الهرمي (AHP). بدلاً من أن تضع نسباً مئوية لستة عوامل دفعة واحدة، تقارن بين عاملين في كل مرة، والحساب يتولى الباقي.",
+  s1h:"قارن",s1p:"نعرض عليك عاملين، وتختار أيهما أهم وبأي درجة على مقياس من 1 إلى 9. النقطة في المنتصف تعني أنهما متساويان.",
+  s2h:"تحقق",s2p:"إذا قلت إن (أ) أهم من (ب)، و(ب) أهم من (ج)، فالمنطقي أن (أ) أهم من (ج). يفحص الموقع هذا الاتساق وينبهك إن وجد تناقضاً.",
+  s3h:"اجمع",s3p:"تتحول مقارناتك إلى أوزان لكل عامل، ثم تُدمج مع إجابات بقية الخبراء لنعرف ما يهم الطالب العُماني فعلاً.",
+  demoH:"جرّب مقارنة الآن",demoP:"هذه ثلاث مقارنات للتجربة فقط ولا تُحفظ. حرّك النقاط وراقب كيف تتغير الأوزان ومؤشر الاتساق.",
+  demoOut:"الأوزان الناتجة",demoNote:"العامل الأعلى وزناً يظهر بالذهبي. جرّب أن تناقض نفسك عمداً لترى تنبيه الاتساق.",
+  okBadge:"متسقة",badBadge:"يوجد تناقض",
+  listH:"ماذا ستقارن",listP:"جزءان، كل جزء فيه ست عوامل و15 مقارنة.",
+  l1h:"الجزء الأول: لماذا يختار الطالب التخصص؟",l1p:"العوامل التي تؤثر في قرار طالب الصف الثاني عشر.",
+  l2h:"الجزء الثاني: كيف نصل للطالب؟",l2p:"قنوات التواصل الأكثر فاعلية لتعريفه بالتخصص.",
+  f1:"دقائق تقريباً",f2:"مقارنة",f3:"بدون اسم أو بريد",f3b:"مجهول",
+  bandH:"خبرتك تصنع الفرق",bandP:"في النهاية تحصل على رمز إجابة قصير ترسله لفريق المشروع. لا نجمع أي بيانات شخصية.",
+  who:"من أنت؟",gender:"الجنس",begin:"ابدأ الجزء الأول",needProfile:"اختر فئتك وجنسك للمتابعة.",profileH:"قبل أن نبدأ",profileP:"سؤالان سريعان لنصنّف إجابتك ضمن فئتها.",
+  partA:"الجزء الأول: لماذا يختار الطالب التخصص؟",partAq:"عندما يقرر طالب الصف الثاني عشر في عُمان التقديم على الهندسة الصناعية في جامعة السلطان قابوس، أي العاملين أهم، وبأي درجة؟",
+  partB:"الجزء الثاني: كيف نصل للطالب؟",partBq:"لتعريف طلاب الصفين 11 و12 في عُمان بتخصص الهندسة الصناعية، أي القناتين أكثر فاعلية، وبأي درجة؟",
+  tapDef:"اضغط على أي اسم لترى تعريفه.",equal:"متساويان",notYet:"لم تجب بعد",or:"أم",extreme:"أهم بشكل مطلق",
+  check:"تحقق من إجاباتي",missing:function(n){return "بقي "+n+" من المقارنات دون إجابة.";},
+  back:"رجوع",ok:"إجاباتك متسقة. يمكنك المتابعة.",
+  bad:"يوجد تناقض في بعض إجاباتك. راجع المقارنات المظللة بالأحمر، أو تابع إن كنت مقتنعاً بإجاباتك.",
+  hint:function(v){return "قيمة متسقة مع بقية إجاباتك: "+v;},
+  weights:"أوزانك",cr:"نسبة الاتساق CR",checkH:"نتيجة الفحص",
+  review:"راجع إجاباتي",contB:"انتقل إلى الجزء الثاني",finish:"إنهاء الاستبيان",
+  doneH:"شكراً لك. هذا رمز إجابتك",doneP:"انسخ الرمز وأرسله لفريق المشروع عبر واتساب أو البريد. الرمز لا يحتوي على اسمك.",
+  yourA:"أوزانك في الجزء الأول",yourB:"أوزانك في الجزء الثاني",
+  sending:"جاري حفظ إجابتك...",sent:"تم حفظ إجابتك. شكراً لك.",sendFail:"تعذر الحفظ التلقائي. انسخ الرمز وأرسله لفريق المشروع.",retry:"أعد المحاولة",doneHsaved:"شكراً لك. وصلتنا إجابتك",doneP2:"احتفظ بهذا الرمز كنسخة احتياطية. لا يحتوي على اسمك.",key:"مفتاح الباحثين",loadSheet:"تحميل الإجابات من الجدول",loading:function(s){return "جاري الاتصال بالجدول... "+s+" ث. أول اتصال قد يستغرق حتى 10 ثوانٍ.";},timeout:"انتهت مهلة الاتصال (25 ثانية). تحقق من الإنترنت ثم أعد المحاولة.",loaded:function(n){return "تم تحميل "+n+" إجابة من الجدول.";},keyBad:"المفتاح غير صحيح أو تعذر الاتصال بالجدول.",copy:"نسخ الرمز",copied:"تم النسخ",copyFail:"حدّد الرمز وانسخه يدوياً.",again:"إجابة جديدة",
+  step:function(k){return ["البداية","الجزء الأول","الفحص","الجزء الثاني","الفحص","النهاية"][k];},
+  count:function(a,b){return a+" من "+b+" مقارنة";},
+  foot:"مشروع تخرج MEIE5291، بإشراف د. عماد صمد",researcher:"عرض الباحثين",survey:"العودة للموقع",
+  rH:"تجميع النتائج",rP:"الصق رموز الإجابات هنا، رمزاً في كل سطر. تُحسب الأوزان لكل فئة من الإجابات المتسقة فقط (CR أقل من 0.10)، بدمج الأحكام بالمتوسط الهندسي.",
+  analyse:"احسب النتائج",csv:"نسخ البيانات لملف Excel",csvDone:"تم النسخ. الصقه في ورقة Responses.",
+  invalid:function(n){return n+" سطر غير صالح تم تجاهله.";},none:"لا توجد رموز صالحة بعد. الصق الرموز في المربع ثم اضغط احسب النتائج.",
+  respTable:"المشاركون",grp:"الفئة",gen:"الجنس",crA:"CR الجزء 1",crB:"CR الجزء 2",
+  all:"جميع الخبراء",nUsed:function(a,b){return "مستخدم: "+a+" من "+b;},resA:"الجزء الأول: المعايير",resB:"الجزء الثاني: القنوات",noData:"لا توجد إجابات متسقة لهذه الفئة."},
+ en:{brandA:"Final year project",brandB:"Industrial Engineering, Sultan Qaboos University",lang:"العربية",
+  heroH:"What makes a student choose Industrial Engineering?",
+  heroP:"Share your experience through short comparisons. Your answers will shape a clearer message for Omani school students.",
+  start:"Start the survey",how:"How it works",scaleHint:"Tap a pan to add weight to it",
+  panA:"Career prospects",panB:"Personal interest",
+  howH:"Three simple steps",howP:"We use the Analytic Hierarchy Process (AHP). Instead of giving six factors percentages all at once, you compare two at a time and the maths does the rest.",
+  s1h:"Compare",s1p:"You see two factors and choose which matters more, and by how much, on a 1 to 9 scale. The middle point means equal.",
+  s2h:"Check",s2p:"If A matters more than B, and B more than C, then A should matter more than C. The site checks this consistency and flags contradictions.",
+  s3h:"Combine",s3p:"Your comparisons become weights for each factor, then merge with other experts' answers to show what really matters to Omani students.",
+  demoH:"Try a comparison now",demoP:"Three practice comparisons. Nothing is saved. Move the points and watch the weights and consistency change.",
+  demoOut:"Resulting weights",demoNote:"The highest weight shows in gold. Contradict yourself on purpose to see the consistency warning.",
+  okBadge:"Consistent",badBadge:"Contradiction",
+  listH:"What you will compare",listP:"Two parts, each with six factors and 15 comparisons.",
+  l1h:"Part one: why students choose the major",l1p:"Factors behind a Grade 12 student's decision.",
+  l2h:"Part two: how to reach students",l2p:"The most effective channels to introduce the field.",
+  f1:"minutes approx.",f2:"comparisons",f3:"No name or email",f3b:"Anonymous",
+  bandH:"Your experience makes the difference",bandP:"At the end you get a short response code to send to the project team. No personal data is collected.",
+  who:"Who are you?",gender:"Gender",begin:"Start part one",needProfile:"Choose your group and gender to continue.",profileH:"Before we start",profileP:"Two quick questions to place your answer in its group.",
+  partA:"Part one: why students choose the major",partAq:"When a Grade 12 student in Oman decides whether to apply to Industrial Engineering at SQU, which factor is more important, and by how much?",
+  partB:"Part two: how to reach students",partBq:"To make Grade 11-12 students in Oman aware of Industrial Engineering, which channel is more effective, and by how much?",
+  tapDef:"Tap a name to see its definition.",equal:"Equal",notYet:"Not answered yet",or:"or",extreme:"Extremely more important",
+  check:"Check my answers",missing:function(n){return n+" comparisons are still unanswered.";},
+  back:"Back",ok:"Your answers are consistent. You can continue.",
+  bad:"Some answers contradict each other. Review the comparisons highlighted in red, or continue if you are confident.",
+  hint:function(v){return "A value consistent with your other answers: "+v;},
+  weights:"Your weights",cr:"Consistency ratio (CR)",checkH:"Check result",
+  review:"Review my answers",contB:"Go to part two",finish:"Finish the survey",
+  doneH:"Thank you. Here is your response code",doneP:"Copy the code and send it to the project team by WhatsApp or email. It does not contain your name.",
+  yourA:"Your weights, part one",yourB:"Your weights, part two",
+  sending:"Saving your response...",sent:"Your response is saved. Thank you.",sendFail:"Automatic saving failed. Copy the code and send it to the project team.",retry:"Try again",doneHsaved:"Thank you. We received your response",doneP2:"Keep this code as a backup. It does not contain your name.",key:"Researcher key",loadSheet:"Load responses from the sheet",loading:function(s){return "Contacting the sheet... "+s+" s. The first call can take up to 10 seconds.";},timeout:"The connection timed out (25 seconds). Check your internet and try again.",loaded:function(n){return n+" responses loaded from the sheet.";},keyBad:"Wrong key or the sheet could not be reached.",copy:"Copy code",copied:"Copied",copyFail:"Select the code and copy it manually.",again:"New response",
+  step:function(k){return ["Start","Part one","Check","Part two","Check","Finish"][k];},
+  count:function(a,b){return a+" of "+b+" comparisons";},
+  foot:"Final year project MEIE5291, supervised by Dr. Emad Summad",researcher:"Researcher view",survey:"Back to the site",
+  rH:"Aggregate the results",rP:"Paste the response codes here, one per line. Weights are computed per group from consistent responses only (CR below 0.10), aggregating judgments with the geometric mean.",
+  analyse:"Calculate results",csv:"Copy data for Excel",csvDone:"Copied. Paste it into the Responses sheet.",
+  invalid:function(n){return n+" invalid lines were ignored.";},none:"No valid codes yet. Paste codes in the box, then press Calculate results.",
+  respTable:"Respondents",grp:"Group",gen:"Gender",crA:"CR part 1",crB:"CR part 2",
+  all:"All experts",nUsed:function(a,b){return "Used: "+a+" of "+b;},resA:"Part one: criteria",resB:"Part two: channels",noData:"No consistent responses in this group."}
+};
+
+var S={lang:"ar",view:"landing",step:0,group:null,gender:null,A:new Array(15).fill(null),B:new Array(15).fill(null),D:[7,5,8],flagsA:{},flagsB:{}};
+var app=document.getElementById("app"),landing=document.getElementById("landing"),surveyEl=document.getElementById("survey");
+var reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+function t(k){return T[S.lang][k];}
+function nm(o){return o[S.lang];}
+function df(o){return S.lang==="ar"?o.dar:o.den;}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
+function n0(x){return x!=null;}
+
+/* ---------- AHP maths ---------- */
+function val(code){return code<9?10-code:(code===9?1:1/(code-8));}
+function matrixFromVals(vals,n,P){var M=[],i,j;for(i=0;i<n;i++){M.push([]);for(j=0;j<n;j++)M[i].push(1);}
+  P.forEach(function(p,k){var v=vals[k];M[p[0]][p[1]]=v;M[p[1]][p[0]]=1/v;});return M;}
+function ahp(M){var n=M.length,w=new Array(n).fill(1/n),it,i,j;
+  for(it=0;it<200;it++){var nw=[],s=0;for(i=0;i<n;i++){var x=0;for(j=0;j<n;j++)x+=M[i][j]*w[j];nw.push(x);s+=x;}for(i=0;i<n;i++)nw[i]/=s;w=nw;}
+  var lam=0;for(i=0;i<n;i++){var y=0;for(j=0;j<n;j++)y+=M[i][j]*w[j];lam+=y/w[i];}lam/=n;
+  return {w:w,lam:lam,CR:Math.max(0,((lam-n)/(n-1))/RIx[n])};}
+function suggestCode(r){if(r>=1){var v=Math.min(9,Math.max(1,Math.round(r)));return v===1?9:10-v;}var b=Math.min(9,Math.max(1,Math.round(1/r)));return b===1?9:8+b;}
+function worstPairs(codes){var M=matrixFromVals(codes.map(val),N,PAIRS),R=ahp(M);
+  var dev=PAIRS.map(function(p,k){var e=M[p[0]][p[1]]*R.w[p[1]]/R.w[p[0]];return {k:k,d:Math.abs(Math.log(e)),s:suggestCode(R.w[p[0]]/R.w[p[1]])};});
+  dev.sort(function(a,b){return b.d-a.d;});return {R:R,top:dev.slice(0,2).filter(function(x){return x.d>0.4;})};}
+
+/* ---------- shared comparison UI ---------- */
+function reading(code,items,p){
+  if(code==null)return '<span class="reading empty">'+esc(t("notYet"))+'</span>';
+  if(code===9)return '<span class="reading">'+esc(t("equal"))+'</span>';
+  var a=code<9,inten=a?10-code:code-8,who=a?items[p[0]]:items[p[1]];
+  return '<span class="reading">'+esc(nm(who))+' '+INTENS[inten][S.lang]+' ('+inten+')</span>';}
+function itemHTML(o,side){return '<div class="item '+side+'"><details><summary><span class="t">'+esc(nm(o))+'</span></summary><div class="def">'+esc(df(o))+'</div></details></div>';}
+function scaleHTML(name,code){
+  var h='<div class="scale" role="radiogroup">';
+  for(var c=1;c<=17;c++){var inten=c<9?10-c:(c===9?1:c-8),size=12+inten*2.2;
+    h+='<label class="stop'+(c===9?" eq":"")+'"><input type="radio" name="'+name+'" value="'+c+'"'+(code===c?" checked":"")+' aria-label="'+(c===9?esc(t("equal")):(c<9?"A ":"B ")+inten)+'"><span style="--sz:'+size.toFixed(1)+'"></span></label>';}
+  return h+'</div><div class="scale-ends" aria-hidden="true"><span>'+esc(t("extreme"))+'</span><span>'+esc(t("equal"))+'</span><span>'+esc(t("extreme"))+'</span></div>';
+}
+function qHTML(id,items,p,code,num,flag){
+  return '<section class="q'+(flag!=null?" flag":"")+'" id="q'+id+'">'+(num?'<div class="q-head"><span class="q-num">'+num+'</span></div>':'')+
+   '<div class="pair">'+itemHTML(items[p[0]],"a")+'<span class="vs">'+esc(t("or"))+'</span>'+itemHTML(items[p[1]],"b")+'</div>'+
+   scaleHTML(id,code)+'<div id="r'+id+'">'+reading(code,items,p)+'</div>'+
+   '<span class="hint">'+(flag!=null?esc(t("hint")(stripTags(reading(flag,items,p)))):"")+'</span></section>';}
+function markWin(id,code){var q=document.getElementById("q"+id);if(!q)return;var it=q.querySelectorAll(".item");
+  it[0].classList.toggle("win",code!=null&&code<9);it[1].classList.toggle("win",code!=null&&code>9);}
+function bindQ(root,id,items,p,onSet){root.querySelectorAll('input[name="'+id+'"]').forEach(function(el){el.onchange=function(){
+  var c=+el.value;document.getElementById("r"+id).innerHTML=reading(c,items,p);markWin(id,c);
+  var q=document.getElementById("q"+id);q.classList.remove("flag");onSet(c);};});}
+function stripTags(s){var d=document.createElement("div");d.innerHTML=s;return d.textContent;}
+function barsHTML(items,w){return '<div class="bars">'+items.map(function(o,i){return {o:o,w:w[i]};}).sort(function(a,b){return b.w-a.w;}).map(function(x){
+  return '<div class="bar"><span>'+esc(nm(x.o))+'</span><div class="bar-track"><div class="bar-fill" style="width:'+(x.w*100).toFixed(1)+'%"></div></div><b>'+(x.w*100).toFixed(1)+'%</b></div>';}).join("")+'</div>';}
+
+/* ---------- landing ---------- */
+function scaleSVG(){
+  return '<svg class="scale-svg" viewBox="0 0 520 360" role="img" aria-label="'+esc(t("scaleHint"))+'">'+
+  '<defs><linearGradient id="post" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#8EBBF2"/><stop offset="1" stop-color="#1F6FD1"/></linearGradient>'+
+  '<linearGradient id="beam" x1="0" x2="1"><stop offset="0" stop-color="#4C8FE0"/><stop offset=".5" stop-color="#CFE2FA"/><stop offset="1" stop-color="#4C8FE0"/></linearGradient>'+
+  '<radialGradient id="glow"><stop offset="0" stop-color="#4C8FE0" stop-opacity=".55"/><stop offset="1" stop-color="#4C8FE0" stop-opacity="0"/></radialGradient></defs>'+
+  '<ellipse cx="260" cy="330" rx="210" ry="22" fill="url(#glow)"/>'+
+  '<rect x="252" y="96" width="16" height="222" rx="8" fill="url(#post)"/>'+
+  '<path d="M196 330 Q260 300 324 330 Z" fill="#14448A"/><rect x="190" y="326" width="140" height="10" rx="5" fill="#1F6FD1"/>'+
+  '<g id="beamG"><rect x="70" y="90" width="380" height="12" rx="6" fill="url(#beam)"/></g>'+
+  '<circle cx="260" cy="96" r="14" fill="#F2B544"/><circle cx="260" cy="96" r="5" fill="#5B3D00"/>'+
+  panSVG("L")+panSVG("R")+'</svg>';
+}
+function panSVG(side){
+  return '<g class="pan" id="pan'+side+'" tabindex="0" role="button">'+
+   '<line class="str" x1="0" y1="0" x2="-46" y2="96" stroke="#8EBBF2" stroke-width="2"/><line class="str" x1="0" y1="0" x2="46" y2="96" stroke="#8EBBF2" stroke-width="2"/>'+
+   '<g class="blocks"></g>'+
+   '<path class="pan-dish" d="M-62 96 Q0 136 62 96 Z" fill="rgba(255,255,255,.08)" stroke="#CFE2FA" stroke-width="2"/>'+
+   '<text y="162" text-anchor="middle" fill="#E6EEF8" font-size="17" font-weight="600" class="panlab"></text></g>';
+}
+function renderLanding(){
+  var steps=[["s1",ill1()],["s2",ill2()],["s3",ill3()]];
+  var h='<section class="hero"><div class="container"><div class="reveal">'+
+   '<h1>'+esc(t("heroH"))+'</h1><p>'+esc(t("heroP"))+'</p>'+
+   '<div class="ctas"><button class="btn light" type="button" data-start>'+esc(t("start"))+'</button><a class="btn ghost" href="#how">'+esc(t("how"))+'</a></div></div>'+
+   '<div class="scale-wrap reveal">'+scaleSVG()+'<div class="scale-hint">'+esc(t("scaleHint"))+'</div></div></div></section>';
+  h+='<section class="block" id="how"><div class="container"><div class="reveal"><h2>'+esc(t("howH"))+'</h2><p class="sub">'+esc(t("howP"))+'</p></div><div class="steps">';
+  steps.forEach(function(s){h+='<div class="step reveal"><div class="ill" aria-hidden="true">'+s[1]+'</div><div><h3>'+esc(t(s[0]+"h"))+'</h3><p>'+esc(t(s[0]+"p"))+'</p></div></div>';});
+  h+='</div></div></section>';
+  h+='<section class="block demo"><div class="container"><div class="reveal"><h2>'+esc(t("demoH"))+'</h2><p class="sub">'+esc(t("demoP"))+'</p></div><div class="demo-grid"><div class="reveal">';
+  DPAIRS.forEach(function(p,k){h+=qHTML("D"+k,DEMO,p,S.D[k],null,null);});
+  h+='</div><div class="demo-out reveal"><h3>'+esc(t("demoOut"))+'</h3><div id="demoRes"></div><p class="demo-note">'+esc(t("demoNote"))+'</p></div></div></div></section>';
+  h+='<section class="block"><div class="container"><div class="reveal"><h2>'+esc(t("listH"))+'</h2><p class="sub">'+esc(t("listP"))+'</p></div><div class="lists">';
+  [["l1",CRIT],["l2",CHAN]].forEach(function(L){h+='<div class="reveal"><h3>'+esc(t(L[0]+"h"))+'</h3><p class="muted">'+esc(t(L[0]+"p"))+'</p><ol>'+
+    L[1].map(function(o){return '<li><b>'+esc(nm(o))+'</b><span>'+esc(df(o))+'</span></li>';}).join("")+'</ol></div>';});
+  h+='</div><div class="facts reveal"><div class="fact"><b>10</b><span>'+esc(t("f1"))+'</span></div><div class="fact"><b>30</b><span>'+esc(t("f2"))+'</span></div><div class="fact"><b>'+esc(t("f3b"))+'</b><span>'+esc(t("f3"))+'</span></div></div></div></section>';
+  h+='<section class="band"><div class="narrow reveal"><h2>'+esc(t("bandH"))+'</h2><p>'+esc(t("bandP"))+'</p><button class="btn light" type="button" data-start>'+esc(t("start"))+'</button></div></section>';
+  landing.innerHTML=h;
+  landing.querySelectorAll("[data-start]").forEach(function(b){b.onclick=function(){openSurvey(0);};});
+  DPAIRS.forEach(function(p,k){markWin("D"+k,S.D[k]);bindQ(landing,"D"+k,DEMO,p,function(c){S.D[k]=c;demoUpdate();});});
+  demoUpdate(); initScale(); observe();
+}
+function demoUpdate(){var R=ahp(matrixFromVals(S.D.map(val),3,DPAIRS)),ok=R.CR<0.1;
+  document.getElementById("demoRes").innerHTML=barsHTML(DEMO,R.w)+'<span class="badge '+(ok?"ok":"bad")+'">'+esc(ok?t("okBadge"):t("badBadge"))+'</span> <span class="cr">CR = '+R.CR.toFixed(2)+'</span>';}
+function ill1(){var a=S.lang==="ar";return '<svg viewBox="0 0 260 180"><rect class="win" x="'+(a?150:20)+'" y="28" width="90" height="44" rx="12" fill="#C9DCF5"/><text class="wintext" x="'+(a?195:65)+'" y="56" text-anchor="middle" font-size="18" font-weight="700" fill="#14448A">'+(a?"أ":"A")+'</text>'+
+  '<rect x="'+(a?20:150)+'" y="28" width="90" height="44" rx="12" fill="#C9DCF5"/><text x="'+(a?65:195)+'" y="56" text-anchor="middle" font-size="18" font-weight="700" fill="#14448A">'+(a?"ب":"B")+'</text>'+
+  '<line x1="30" y1="124" x2="230" y2="124" stroke="#8EBBF2" stroke-width="3" stroke-linecap="round"/>'+
+  [30,55,80,105,130,155,180,205,230].map(function(x,i){var r=i===4?5:3+Math.abs(i-4)*0.9;return '<circle cx="'+x+'" cy="124" r="'+r+'" fill="#fff" stroke="#4C8FE0" stroke-width="2"/>';}).join("")+
+  '<g class="mv" style="transform-box:fill-box"><circle cx="130" cy="124" r="10" fill="#1F6FD1"/><circle cx="130" cy="124" r="16" fill="#1F6FD1" opacity=".18"/></g></svg>';}
+function ill2(){var L=S.lang==="ar"?["أ","ب","ج"]:["A","B","C"];
+  return '<svg viewBox="0 0 260 180"><path class="edge" d="M130 30 L56 146" stroke="#4C8FE0" stroke-width="3" fill="none"/><path class="edge e2" d="M56 146 L204 146" stroke="#4C8FE0" stroke-width="3" fill="none"/><path class="edge e3" d="M204 146 L130 30" stroke="#4C8FE0" stroke-width="3" fill="none"/>'+
+  [[130,30,L[0]],[56,146,L[1]],[204,146,L[2]]].map(function(n){return '<circle cx="'+n[0]+'" cy="'+n[1]+'" r="20" fill="#fff" stroke="#1F6FD1" stroke-width="3"/><text x="'+n[0]+'" y="'+(n[1]+6)+'" text-anchor="middle" font-size="17" font-weight="700" fill="#14448A">'+n[2]+'</text>';}).join("")+
+  '<circle class="chkbg" cx="130" cy="104" r="22" fill="#1E8E62"/><path class="chk" d="M119 104 l8 8 l15 -16" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>';}
+function ill3(){return '<svg viewBox="0 0 260 180"><line x1="30" y1="160" x2="230" y2="160" stroke="#8EBBF2" stroke-width="2"/>'+
+  '<rect class="bar3" x="48" y="40" width="44" height="120" rx="8" fill="#F2B544"/><rect class="bar3 b2" x="108" y="78" width="44" height="82" rx="8" fill="#1F6FD1"/><rect class="bar3 b3" x="168" y="112" width="44" height="48" rx="8" fill="#8EBBF2"/></svg>';}
+
+/* hero scale physics (spring) */
+var SC={wL:2,wR:3,ang:0,vel:0,target:0,raf:0};
+function initScale(){
+  var L=document.getElementById("panL"),R=document.getElementById("panR");if(!L)return;
+  var labs=S.lang==="ar"?[t("panB"),t("panA")]:[t("panA"),t("panB")];
+  L.querySelector(".panlab").textContent=labs[0];R.querySelector(".panlab").textContent=labs[1];
+  function add(side){if(side==="L")SC.wL=SC.wL>=5?1:SC.wL+1;else SC.wR=SC.wR>=5?1:SC.wR+1;drawBlocks();setTarget();}
+  [[L,"L"],[R,"R"]].forEach(function(x){x[0].onclick=function(){add(x[1]);};x[0].onkeydown=function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();add(x[1]);}};});
+  drawBlocks();SC.ang=0;SC.vel=0;setTarget();if(reduce){SC.ang=SC.target;place();}
+}
+function drawBlocks(){[["L",SC.wL],["R",SC.wR]].forEach(function(x){var g=document.querySelector("#pan"+x[0]+" .blocks");if(!g)return;var h="";
+  for(var i=0;i<x[1];i++){h+='<rect x="'+(-30+((i%2)*4))+'" y="'+(80-i*13)+'" width="60" height="11" rx="3" fill="#F2B544" stroke="#5B3D00" stroke-opacity=".25"/>';}g.innerHTML=h;});}
+function setTarget(){SC.target=Math.max(-12,Math.min(12,(SC.wR-SC.wL)*4));if(reduce){SC.ang=SC.target;place();return;}if(!SC.raf)SC.raf=requestAnimationFrame(tick);}
+var last=0;
+function tick(ts){var dt=Math.min(0.032,last?(ts-last)/1000:0.016);last=ts;
+  var k=90,c=11,a=-k*(SC.ang-SC.target)-c*SC.vel;SC.vel+=a*dt;SC.ang+=SC.vel*dt;place();
+  if(Math.abs(SC.ang-SC.target)<0.01&&Math.abs(SC.vel)<0.01){SC.ang=SC.target;place();SC.raf=0;last=0;return;}
+  SC.raf=requestAnimationFrame(tick);}
+function place(){var b=document.getElementById("beamG");if(!b)return;var r=SC.ang*Math.PI/180;
+  b.setAttribute("transform","rotate("+SC.ang.toFixed(3)+" 260 96)");
+  [["L",-180],["R",180]].forEach(function(x){var px=260+x[1]*Math.cos(r),py=96+x[1]*Math.sin(r);var g=document.getElementById("pan"+x[0]);if(g)g.setAttribute("transform","translate("+px.toFixed(2)+" "+py.toFixed(2)+")");});}
+
+var io=null;
+function observe(){
+  var els=document.querySelectorAll(".reveal");
+  if(reduce||!("IntersectionObserver" in window)){els.forEach(function(e){e.classList.add("in");});return;}
+  if(io)io.disconnect();
+  io=new IntersectionObserver(function(ents){ents.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target);}});},{threshold:0.2,rootMargin:"0px 0px -6% 0px"});
+  els.forEach(function(e){io.observe(e);});
+}
+
+/* ---------- survey ---------- */
+function setRuler(){var done=S.A.filter(n0).length+S.B.filter(n0).length;
+  document.getElementById("rulerFill").style.width=(done/30*100)+"%";
+  document.getElementById("rulerStep").textContent=t("step")(S.step);
+  document.getElementById("rulerCount").textContent=t("count")(done,30);
+  document.getElementById("ruler").classList.toggle("hidden",S.view!=="survey");}
+function chrome(){
+  document.documentElement.lang=S.lang;document.documentElement.dir=S.lang==="ar"?"rtl":"ltr";
+  document.getElementById("brand").innerHTML='<b>'+esc(t("brandA"))+'</b><span>'+esc(t("brandB"))+'</span>';
+  document.getElementById("langBtn").textContent=t("lang");
+  document.getElementById("footNote").textContent=t("foot");
+  document.getElementById("researcherLink").textContent=S.view==="research"?t("survey"):t("researcher");
+  landing.classList.toggle("hidden",S.view!=="landing");surveyEl.classList.toggle("hidden",S.view==="landing");
+  setRuler();}
+function render(){chrome();
+  if(S.view==="landing")return renderLanding();
+  if(S.view==="research")return renderResearch();
+  [renderIntro,function(){renderPart("A");},function(){renderCheck("A");},function(){renderPart("B");},function(){renderCheck("B");},renderDone][S.step]();}
+function openSurvey(step){S.view="survey";go(step);}
+function go(step){S.step=step;render();window.scrollTo(0,0);app.classList.remove("enter");void app.offsetWidth;app.classList.add("enter");app.focus({preventScroll:true});}
+
+function renderIntro(){
+  var g=GROUPS.map(function(x){return '<label class="chip"><input type="radio" name="grp" value="'+x.k+'"'+(S.group===x.k?" checked":"")+'><span>'+esc(nm(x))+'</span></label>';}).join("");
+  var s=GENDERS.map(function(x){return '<label class="chip"><input type="radio" name="gen" value="'+x.k+'"'+(S.gender===x.k?" checked":"")+'><span>'+esc(nm(x))+'</span></label>';}).join("");
+  app.innerHTML='<h1>'+esc(t("profileH"))+'</h1><p class="lead">'+esc(t("profileP"))+'</p>'+
+   '<div class="card"><label class="f">'+esc(t("who"))+'</label><div class="chips">'+g+'</div><label class="f">'+esc(t("gender"))+'</label><div class="chips">'+s+'</div></div>'+
+   '<div class="err" id="err"></div><div class="btns"><button class="btn ghost" id="bk" type="button">'+esc(t("back"))+'</button><button class="btn" id="go" type="button">'+esc(t("begin"))+'</button></div>';
+  app.querySelectorAll('input[name=grp]').forEach(function(el){el.onchange=function(){S.group=el.value;};});
+  app.querySelectorAll('input[name=gen]').forEach(function(el){el.onchange=function(){S.gender=el.value;};});
+  document.getElementById("bk").onclick=function(){S.view="landing";render();window.scrollTo(0,0);};
+  document.getElementById("go").onclick=function(){if(!S.group||!S.gender){document.getElementById("err").textContent=t("needProfile");return;}go(1);};
+}
+function renderPart(part){
+  var items=part==="A"?CRIT:CHAN,codes=S[part],flags=S["flags"+part];
+  var h='<h1>'+esc(t(part==="A"?"partA":"partB"))+'</h1><p class="lead">'+esc(t(part==="A"?"partAq":"partBq"))+'</p><p class="note">'+esc(t("tapDef"))+'</p>';
+  PAIRS.forEach(function(p,k){h+=qHTML(part+k,items,p,codes[k],(k+1)+" / 15",flags[k]);});
+  h+='<div class="err" id="err"></div><div class="btns"><button class="btn ghost" id="bk" type="button">'+esc(t("back"))+'</button><button class="btn" id="ck" type="button">'+esc(t("check"))+'</button></div>';
+  app.innerHTML=h;
+  PAIRS.forEach(function(p,k){markWin(part+k,codes[k]);bindQ(app,part+k,items,p,function(c){S[part][k]=c;delete S["flags"+part][k];setRuler();});});
+  document.getElementById("bk").onclick=function(){go(part==="A"?0:2);};
+  document.getElementById("ck").onclick=function(){var miss=S[part].filter(function(x){return x==null;}).length;
+    if(miss){document.getElementById("err").textContent=t("missing")(miss);var f=S[part].findIndex(function(x){return x==null;});document.getElementById("q"+part+f).scrollIntoView({behavior:reduce?"auto":"smooth",block:"center"});return;}
+    go(part==="A"?2:4);};
+}
+function renderCheck(part){
+  var res=worstPairs(S[part]),ok=res.R.CR<0.1,flags={};
+  if(!ok)res.top.forEach(function(x){flags[x.k]=x.s;});S["flags"+part]=flags;
+  app.innerHTML='<h1>'+esc(t("checkH"))+'</h1><div class="verdict '+(ok?"ok":"bad")+'">'+esc(ok?t("ok"):t("bad"))+'</div>'+
+   '<div class="cr">'+esc(t("cr"))+': '+res.R.CR.toFixed(3)+'</div>'+
+   '<div class="btns"><button class="btn ghost" id="bk" type="button">'+esc(t("review"))+'</button><button class="btn" id="nx" type="button">'+esc(part==="A"?t("contB"):t("finish"))+'</button></div>';
+  document.getElementById("bk").onclick=function(){go(part==="A"?1:3);};
+  document.getElementById("nx").onclick=function(){go(part==="A"?3:5);};
+}
+var LET="abcdefghijklmnopq";
+function encode(){return "IE1-"+S.group+S.gender+"-"+S.A.map(function(c){return LET[c-1];}).join("")+"-"+S.B.map(function(c){return LET[c-1];}).join("");}
+function decode(line){var m=/^IE1-([FGS])([MW])-([a-q]{15})-([a-q]{15})$/.exec(line.trim());if(!m)return null;
+  return {g:m[1],s:m[2],A:m[3].split("").map(function(ch){return LET.indexOf(ch)+1;}),B:m[4].split("").map(function(ch){return LET.indexOf(ch)+1;})};}
+function copyText(text,btn,el,msg){function ok(){btn.textContent=msg||t("copied");}
+  function fb(){try{el.focus();el.select();if(document.execCommand&&document.execCommand("copy")){ok();return;}}catch(e){}btn.textContent=t("copyFail");}
+  try{if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(ok,fb);return;}}catch(e){}fb();}
+var SENT={};
+function rid(){try{if(window.crypto&&crypto.randomUUID)return crypto.randomUUID();}catch(e){}return "r"+Date.now().toString(36)+Math.random().toString(36).slice(2,10);}
+function submit(payload,cb){
+  if(!SHEET_URL){cb("none");return;}
+  var body=JSON.stringify(payload);
+  fetch(SHEET_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:body,redirect:"follow"})
+   .then(function(r){return r.json();}).then(function(d){cb(d&&d.ok?"ok":"fail");})
+   .catch(function(){fetch(SHEET_URL,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:body}).then(function(){cb("ok");},function(){cb("fail");});});
+}
+function renderDone(){
+  var code=encode(),RA=ahp(matrixFromVals(S.A.map(val),N,PAIRS)),RB=ahp(matrixFromVals(S.B.map(val),N,PAIRS));
+  app.innerHTML='<svg class="done-mark" viewBox="0 0 72 72" aria-hidden="true"><circle cx="36" cy="36" r="34"/><path d="M22 37 l9 9 l19 -20" stroke="#fff" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>'+
+   '<h1 id="doneH">'+esc(SHEET_URL?t("doneHsaved"):t("doneH"))+'</h1><p class="lead" id="doneP">'+esc(SHEET_URL?t("sending"):t("doneP"))+'</p><div id="sendRow"></div><textarea class="code" id="code" readonly>'+code+'</textarea>'+
+   '<div class="btns"><button class="btn" id="cp" type="button">'+esc(t("copy"))+'</button><button class="btn ghost" id="nw" type="button">'+esc(t("again"))+'</button></div>'+
+   '<div class="card"><h2>'+esc(t("yourA"))+'</h2>'+barsHTML(CRIT,RA.w)+'</div><div class="card"><h2>'+esc(t("yourB"))+'</h2>'+barsHTML(CHAN,RB.w)+'</div>';
+  var ta=document.getElementById("code");
+  document.getElementById("cp").onclick=function(){copyText(code,this,ta);};
+  if(SHEET_URL){
+    if(!S.rid)S.rid=rid();
+    var payload={id:S.rid,code:code,crA:RA.CR.toFixed(4),crB:RB.CR.toFixed(4),lang:S.lang};
+    var p=document.getElementById("doneP"),row=document.getElementById("sendRow");
+    var show=function(st){
+      if(st==="ok"){SENT[code]=true;p.textContent=t("sent")+" "+t("doneP2");row.innerHTML="";}
+      else{p.textContent=t("sendFail");document.getElementById("doneH").textContent=t("doneH");
+        row.innerHTML='<div class="btns" style="margin-top:0;margin-bottom:12px"><button class="btn ghost" id="rt" type="button">'+esc(t("retry"))+'</button></div>';
+        document.getElementById("rt").onclick=function(){p.textContent=t("sending");row.innerHTML="";submit(payload,show);};}
+    };
+    if(SENT[code])show("ok");else submit(payload,show);
+  }
+  document.getElementById("nw").onclick=function(){S.group=null;S.gender=null;S.A=new Array(15).fill(null);S.B=new Array(15).fill(null);S.flagsA={};S.flagsB={};S.rid=null;S.view="landing";render();window.scrollTo(0,0);};
+}
+
+/* ---------- researcher view ---------- */
+var STORE="ie_ahp_codes_v1";
+function load(){try{return localStorage.getItem(STORE)||"";}catch(e){return "";}}
+function save(v){try{localStorage.setItem(STORE,v);}catch(e){}}
+function aggregate(rows,part,filter){var use=rows.filter(function(r){return filter(r)&&r["cr"+part]<0.1;});if(!use.length)return {n:0};
+  var vals=PAIRS.map(function(p,k){var s=0;use.forEach(function(r){s+=Math.log(val(r[part][k]));});return Math.exp(s/use.length);});
+  var R=ahp(matrixFromVals(vals,N,PAIRS));return {n:use.length,w:R.w,CR:R.CR};}
+function renderResearch(){var txt=load();
+  app.innerHTML='<h1>'+esc(t("rH"))+'</h1><p class="lead">'+esc(t("rP"))+'</p><textarea class="paste" id="paste" placeholder="IE1-FM-...">'+esc(txt)+'</textarea>'+
+   (SHEET_URL?'<div class="card"><label class="f" for="rkey">'+esc(t("key"))+'</label><div class="btns" style="margin-top:8px"><input id="rkey" type="password" autocomplete="off" style="flex:1;min-width:180px;border:1px solid var(--line);border-radius:999px;padding:11px 16px;background:var(--card)"><button class="btn ghost" id="ld" type="button">'+esc(t("loadSheet"))+'</button></div><div class="note" id="ldmsg" style="margin-top:8px"></div></div>':'')+
+   '<div class="btns"><button class="btn" id="an" type="button">'+esc(t("analyse"))+'</button></div><div class="err" id="err"></div><div id="out"></div>';
+  document.getElementById("an").onclick=analyse;
+  if(SHEET_URL)document.getElementById("ld").onclick=function(){
+    var btn=this,k=document.getElementById("rkey").value.trim(),m=document.getElementById("ldmsg"),t0=Date.now(),done=false;
+    btn.disabled=true;m.textContent=t("loading")(0);
+    var tick=setInterval(function(){m.textContent=t("loading")(Math.round((Date.now()-t0)/1000));},1000);
+    var ctrl=("AbortController" in window)?new AbortController():null;
+    var to=setTimeout(function(){if(ctrl)ctrl.abort();finish(t("timeout"));},25000);
+    function finish(msg){if(done)return;done=true;clearInterval(tick);clearTimeout(to);btn.disabled=false;if(msg!=null)m.textContent=msg;}
+    fetch(SHEET_URL+(SHEET_URL.indexOf("?")>-1?"&":"?")+"key="+encodeURIComponent(k)+"&t="+Date.now(),ctrl?{signal:ctrl.signal}:{})
+     .then(function(r){return r.json();}).then(function(d){
+       if(done)return;
+       if(!d||!d.ok){finish(t("keyBad"));return;}
+       document.getElementById("paste").value=d.codes.join("\n");finish(t("loaded")(d.codes.length)+" ("+((Date.now()-t0)/1000).toFixed(1)+" s)");analyse();
+     }).catch(function(){finish(t("keyBad"));});};
+  analyse();}
+function analyse(){
+  var raw=document.getElementById("paste").value;save(raw);
+  var lines=raw.split(/\s+/).filter(Boolean),rows=[],bad=0;
+  lines.forEach(function(l){var d=decode(l);if(!d){bad++;return;}
+    d.crA=ahp(matrixFromVals(d.A.map(val),N,PAIRS)).CR;d.crB=ahp(matrixFromVals(d.B.map(val),N,PAIRS)).CR;rows.push(d);});
+  document.getElementById("err").textContent=bad?t("invalid")(bad):"";
+  var out=document.getElementById("out");
+  if(!rows.length){out.innerHTML='<p class="note">'+esc(t("none"))+'</p>';return;}
+  var gname=function(k){return nm(GROUPS.filter(function(x){return x.k===k;})[0]);},sname=function(k){return nm(GENDERS.filter(function(x){return x.k===k;})[0]);};
+  var h='<h2>'+esc(t("respTable"))+' ('+rows.length+')</h2><div class="tablewrap"><table><thead><tr><th>#</th><th>'+t("grp")+'</th><th>'+t("gen")+'</th><th>'+t("crA")+'</th><th>'+t("crB")+'</th></tr></thead><tbody>';
+  rows.forEach(function(r,i){h+='<tr><td>'+(i+1)+'</td><td>'+esc(gname(r.g))+'</td><td>'+esc(sname(r.s))+'</td><td class="'+(r.crA<0.1?"yes":"no")+'">'+r.crA.toFixed(3)+'</td><td class="'+(r.crB<0.1?"yes":"no")+'">'+r.crB.toFixed(3)+'</td></tr>';});
+  h+='</tbody></table></div>';
+  var groups=GROUPS.map(function(g){return {label:nm(g),f:function(r){return r.g===g.k;},tot:rows.filter(function(r){return r.g===g.k;}).length};});
+  groups.push({label:t("all"),f:function(){return true;},tot:rows.length});
+  [["A",CRIT,"resA"],["B",CHAN,"resB"]].forEach(function(spec){var part=spec[0],items=spec[1];h+='<h2 style="margin-top:28px">'+esc(t(spec[2]))+'</h2>';
+    var aggs=groups.map(function(g){return aggregate(rows,part,g.f);});
+    h+='<div class="tablewrap"><table><thead><tr><th></th>'+groups.map(function(g,i){return '<th>'+esc(g.label)+'<br><span class="note">'+esc(t("nUsed")(aggs[i].n,g.tot))+'</span></th>';}).join("")+'</tr></thead><tbody>';
+    items.forEach(function(o,i){h+='<tr><td style="text-align:start">'+esc(nm(o))+'</td>'+aggs.map(function(a){return '<td>'+(a.n?(a.w[i]*100).toFixed(1)+'%':'-')+'</td>';}).join("")+'</tr>';});
+    h+='</tbody></table></div>';var all=aggs[aggs.length-1];
+    h+='<div class="card"><strong>'+esc(t("all"))+'</strong>'+(all.n?barsHTML(items,all.w)+'<div class="cr">'+esc(t("cr"))+': '+all.CR.toFixed(3)+'</div>':'<p class="note">'+esc(t("noData"))+'</p>')+'</div>';});
+  var gEN={F:"Faculty",G:"Recent graduate",S:"Final-year student"},sEN={M:"Male",W:"Female"};
+  var tsv=rows.map(function(r,i){return ["R"+(i+1),gEN[r.g],sEN[r.s]].concat(r.A,r.B).join("\t");}).join("\n");
+  h+='<div class="btns"><button class="btn ghost" id="csv" type="button">'+esc(t("csv"))+'</button></div><textarea class="paste hidden" id="tsv" readonly>'+tsv+'</textarea>';
+  out.innerHTML=h;
+  document.getElementById("csv").onclick=function(){var ta=document.getElementById("tsv");ta.classList.remove("hidden");copyText(tsv,this,ta,t("csvDone"));};
+}
+
+/* ---------- init ---------- */
+document.getElementById("langBtn").onclick=function(){S.lang=S.lang==="ar"?"en":"ar";render();};
+document.getElementById("researcherLink").onclick=function(){S.view=S.view==="research"?"landing":"research";render();window.scrollTo(0,0);};
+render();
+})();
+</script></body></html>
