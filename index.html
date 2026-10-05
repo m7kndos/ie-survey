@@ -325,7 +325,7 @@ var T={
   review:"راجع إجاباتي",contB:"انتقل إلى الجزء الثاني",finish:"إنهاء الاستبيان",
   doneH:"شكراً لك. هذا رمز إجابتك",doneP:"انسخ الرمز وأرسله لفريق المشروع عبر واتساب أو البريد. الرمز لا يحتوي على اسمك.",
   yourA:"أوزانك في الجزء الأول",yourB:"أوزانك في الجزء الثاني",
-  sending:"جاري حفظ إجابتك...",sent:"تم حفظ إجابتك. شكراً لك.",sendFail:"تعذر الحفظ التلقائي. انسخ الرمز وأرسله لفريق المشروع.",retry:"أعد المحاولة",doneHsaved:"شكراً لك. وصلتنا إجابتك",doneP2:"احتفظ بهذا الرمز كنسخة احتياطية. لا يحتوي على اسمك.",key:"مفتاح الباحثين",loadSheet:"تحميل الإجابات من الجدول",loading:function(s){return "جاري الاتصال بالجدول... "+s+" ث. أول اتصال قد يستغرق حتى 10 ثوانٍ.";},timeout:"انتهت مهلة الاتصال (25 ثانية). تحقق من الإنترنت ثم أعد المحاولة.",loaded:function(n){return "تم تحميل "+n+" إجابة من الجدول.";},keyBad:"المفتاح غير صحيح أو تعذر الاتصال بالجدول.",copy:"نسخ الرمز",copied:"تم النسخ",copyFail:"حدّد الرمز وانسخه يدوياً.",again:"إجابة جديدة",
+  sending:"جاري حفظ إجابتك... قد يستغرق ذلك حتى 10 ثوانٍ.",savingH:"لحظة، نحفظ إجابتك",sent:"تم حفظ إجابتك. شكراً لك.",sendFail:"تعذر الحفظ التلقائي. انسخ الرمز وأرسله لفريق المشروع.",retry:"أعد المحاولة",doneHsaved:"شكراً لك. وصلتنا إجابتك",doneP2:"احتفظ بهذا الرمز كنسخة احتياطية. لا يحتوي على اسمك.",key:"مفتاح الباحثين",loadSheet:"تحميل الإجابات من الجدول",loading:function(s){return "جاري الاتصال بالجدول... "+s+" ث. أول اتصال قد يستغرق حتى 10 ثوانٍ.";},timeout:"انتهت مهلة الاتصال (25 ثانية). تحقق من الإنترنت ثم أعد المحاولة.",loaded:function(n){return "تم تحميل "+n+" إجابة من الجدول.";},keyBad:"المفتاح غير صحيح أو تعذر الاتصال بالجدول.",copy:"نسخ الرمز",copied:"تم النسخ",copyFail:"حدّد الرمز وانسخه يدوياً.",again:"إجابة جديدة",
   step:function(k){return ["البداية","الجزء الأول","الفحص","الجزء الثاني","الفحص","النهاية"][k];},
   count:function(a,b){return a+" من "+b+" مقارنة";},
   foot:"مشروع تخرج MEIE5291، بإشراف د. عماد صمد",researcher:"عرض الباحثين",survey:"العودة للموقع",
@@ -363,7 +363,7 @@ var T={
   review:"Review my answers",contB:"Go to part two",finish:"Finish the survey",
   doneH:"Thank you. Here is your response code",doneP:"Copy the code and send it to the project team by WhatsApp or email. It does not contain your name.",
   yourA:"Your weights, part one",yourB:"Your weights, part two",
-  sending:"Saving your response...",sent:"Your response is saved. Thank you.",sendFail:"Automatic saving failed. Copy the code and send it to the project team.",retry:"Try again",doneHsaved:"Thank you. We received your response",doneP2:"Keep this code as a backup. It does not contain your name.",key:"Researcher key",loadSheet:"Load responses from the sheet",loading:function(s){return "Contacting the sheet... "+s+" s. The first call can take up to 10 seconds.";},timeout:"The connection timed out (25 seconds). Check your internet and try again.",loaded:function(n){return n+" responses loaded from the sheet.";},keyBad:"Wrong key or the sheet could not be reached.",copy:"Copy code",copied:"Copied",copyFail:"Select the code and copy it manually.",again:"New response",
+  sending:"Saving your response... this can take up to 10 seconds.",savingH:"One moment, saving your response",sent:"Your response is saved. Thank you.",sendFail:"Automatic saving failed. Copy the code and send it to the project team.",retry:"Try again",doneHsaved:"Thank you. We received your response",doneP2:"Keep this code as a backup. It does not contain your name.",key:"Researcher key",loadSheet:"Load responses from the sheet",loading:function(s){return "Contacting the sheet... "+s+" s. The first call can take up to 10 seconds.";},timeout:"The connection timed out (25 seconds). Check your internet and try again.",loaded:function(n){return n+" responses loaded from the sheet.";},keyBad:"Wrong key or the sheet could not be reached.",copy:"Copy code",copied:"Copied",copyFail:"Select the code and copy it manually.",again:"New response",
   step:function(k){return ["Start","Part one","Check","Part two","Check","Finish"][k];},
   count:function(a,b){return a+" of "+b+" comparisons";},
   foot:"Final year project MEIE5291, supervised by Dr. Emad Summad",researcher:"Researcher view",survey:"Back to the site",
@@ -572,8 +572,10 @@ function copyText(text,btn,el,msg){function ok(){btn.textContent=msg||t("copied"
   try{if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(ok,fb);return;}}catch(e){}fb();}
 var SENT={};
 function rid(){try{if(window.crypto&&crypto.randomUUID)return crypto.randomUUID();}catch(e){}return "r"+Date.now().toString(36)+Math.random().toString(36).slice(2,10);}
-function submit(payload,cb){
-  if(!SHEET_URL){cb("none");return;}
+function submit(payload,cb0){
+  if(!SHEET_URL){cb0("none");return;}
+  var fired=false,to=setTimeout(function(){cb("fail");},25000);
+  function cb(st){if(fired)return;fired=true;clearTimeout(to);cb0(st);}
   var body=JSON.stringify(payload);
   fetch(SHEET_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:body,redirect:"follow"})
    .then(function(r){return r.json();}).then(function(d){cb(d&&d.ok?"ok":"fail");})
@@ -582,7 +584,7 @@ function submit(payload,cb){
 function renderDone(){
   var code=encode(),RA=ahp(matrixFromVals(S.A.map(val),N,PAIRS)),RB=ahp(matrixFromVals(S.B.map(val),N,PAIRS));
   app.innerHTML='<svg class="done-mark" viewBox="0 0 72 72" aria-hidden="true"><circle cx="36" cy="36" r="34"/><path d="M22 37 l9 9 l19 -20" stroke="#fff" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>'+
-   '<h1 id="doneH">'+esc(SHEET_URL?t("doneHsaved"):t("doneH"))+'</h1><p class="lead" id="doneP">'+esc(SHEET_URL?t("sending"):t("doneP"))+'</p><div id="sendRow"></div><textarea class="code" id="code" readonly>'+code+'</textarea>'+
+   '<h1 id="doneH">'+esc(SHEET_URL?t("savingH"):t("doneH"))+'</h1><p class="lead" id="doneP">'+esc(SHEET_URL?t("sending"):t("doneP"))+'</p><div id="sendRow"></div><textarea class="code" id="code" readonly>'+code+'</textarea>'+
    '<div class="btns"><button class="btn" id="cp" type="button">'+esc(t("copy"))+'</button><button class="btn ghost" id="nw" type="button">'+esc(t("again"))+'</button></div>'+
    '<div class="card"><h2>'+esc(t("yourA"))+'</h2>'+barsHTML(CRIT,RA.w)+'</div><div class="card"><h2>'+esc(t("yourB"))+'</h2>'+barsHTML(CHAN,RB.w)+'</div>';
   var ta=document.getElementById("code");
@@ -592,7 +594,7 @@ function renderDone(){
     var payload={id:S.rid,code:code,crA:RA.CR.toFixed(4),crB:RB.CR.toFixed(4),lang:S.lang};
     var p=document.getElementById("doneP"),row=document.getElementById("sendRow");
     var show=function(st){
-      if(st==="ok"){SENT[code]=true;p.textContent=t("sent")+" "+t("doneP2");row.innerHTML="";}
+      if(st==="ok"){SENT[code]=true;document.getElementById("doneH").textContent=t("doneHsaved");p.textContent=t("sent")+" "+t("doneP2");row.innerHTML="";}
       else{p.textContent=t("sendFail");document.getElementById("doneH").textContent=t("doneH");
         row.innerHTML='<div class="btns" style="margin-top:0;margin-bottom:12px"><button class="btn ghost" id="rt" type="button">'+esc(t("retry"))+'</button></div>';
         document.getElementById("rt").onclick=function(){p.textContent=t("sending");row.innerHTML="";submit(payload,show);};}
