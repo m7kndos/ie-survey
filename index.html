@@ -12,7 +12,7 @@
   --navy:#0A1F3D; --navy-2:#102C55; --blue-700:#14448A; --blue-500:#1F6FD1; --blue-400:#4C8FE0; --blue-300:#8EBBF2; --blue-100:#E6EFFB;
   --gold:#F2B544; --gold-ink:#5B3D00;
   --ink:#0B2140; --ink-2:#4B6280; --line:#D6E1EE; --paper:#F6F9FD; --card:#FFFFFF; --tint:#EAF2FC;
-  --ok:#1E8E62; --bad:#C9443A; --okbg:#E5F4EC; --badbg:#FBEAE8;
+  --ok:#17734F; --bad:#B83A31; --okbg:#E5F4EC; --badbg:#FBEAE8;
   --ease-out:cubic-bezier(0.23,1,0.32,1); --ease-io:cubic-bezier(0.77,0,0.175,1);
   box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
   font-family:"IBM Plex Sans Arabic","Segoe UI","Noto Sans Arabic",Tahoma,Arial,sans-serif;
@@ -41,7 +41,9 @@ button,input,textarea{font:inherit;color:inherit}
 .topbar .container{display:flex;align-items:center;justify-content:space-between;height:56px;gap:12px}
 .brand{font-weight:600;font-size:14.5px;letter-spacing:.01em;display:flex;gap:10px;align-items:center}
 .brand b{font-weight:700}
-.brand span{opacity:.7;font-weight:400}
+.brand span{opacity:.82;font-weight:400}
+.brand{color:inherit;text-decoration:none}
+.tb-actions{display:flex;gap:8px;align-items:center}
 .topbar button{background:transparent;border:1px solid rgba(255,255,255,.35);color:#fff;border-radius:999px;padding:5px 14px;cursor:pointer;font-size:14px;transition:background .16s ease}
 .topbar button:hover{background:rgba(255,255,255,.1)}
 
@@ -130,11 +132,10 @@ html[dir="rtl"] .step.in .ill .mv{transform:translateX(58px)}
 .item.b{text-align:end}
 .item.win{color:var(--blue-500)}
 .vs{font-size:13px;color:var(--ink-2)}
-.item details{font-weight:inherit}
-.item summary{cursor:pointer;list-style:none;display:inline}
-.item summary::-webkit-details-marker{display:none}
-.item summary .t{border-bottom:1.5px dotted color-mix(in srgb,currentColor 55%,transparent)}
-.item .def{font-size:13.5px;color:var(--ink-2);font-weight:400;margin-top:4px}
+.item .t{display:block}
+.item .def{display:block;font-size:13.5px;line-height:1.5;color:var(--ink-2);font-weight:400;margin-top:5px}
+.pair{align-items:start}
+.vs{align-self:center}
 .scale{display:flex;align-items:center;justify-content:space-between;gap:2px;padding:6px 2px 2px;position:relative}
 .scale::before{content:"";position:absolute;inset-inline:8px;top:50%;height:2px;background:linear-gradient(90deg,var(--blue-300),var(--line) 40%,var(--line) 60%,var(--blue-300));transform:translateY(-1px)}
 .stop{position:relative;z-index:1;display:flex;flex:1 1 0;min-width:0;justify-content:center;cursor:pointer;padding:6px 0;--k:1}
@@ -232,6 +233,11 @@ footer.foot .container{display:flex;justify-content:space-between;gap:12px;flex-
   section.block{padding:72px 0}
 }
 @media (max-width:520px){
+  .stop{padding:11px 0}
+  .q{padding:16px 12px 12px}
+  .item{font-size:15.5px}
+  .item .def{font-size:13px}
+  .topbar .tb-actions button{padding:5px 12px}
   .stop{--k:.62}
   .brand span{display:none}
   .bar{grid-template-columns:1fr 56px}
@@ -246,19 +252,19 @@ footer.foot .container{display:flex;justify-content:space-between;gap:12px;flex-
 </head>
 <body>
 <header class="topbar"><div class="container">
-  <div class="brand" id="brand"></div>
-  <button id="langBtn" type="button"></button>
+  <a class="brand" id="brand" href="#" aria-label=""></a>
+  <div class="tb-actions"><button id="homeBtn" type="button" class="hidden"></button><button id="langBtn" type="button"></button></div>
 </div></header>
 
-<div id="landing"></div>
+<main id="landing"></main>
 
-<div id="survey" class="hidden"><div class="narrow">
+<main id="survey" class="hidden"><div class="narrow">
   <div class="ruler" id="ruler" aria-hidden="true">
     <div class="ruler-track"><div class="ruler-fill" id="rulerFill"></div></div>
     <div class="ruler-label"><span id="rulerStep"></span><span id="rulerCount"></span></div>
   </div>
-  <main id="app" tabindex="-1"></main>
-</div></div>
+  <div id="app" tabindex="-1"></div>
+</div></main>
 
 <footer class="foot"><div class="container">
   <span id="footNote"></span>
@@ -275,20 +281,20 @@ function pairsOf(n){var P=[];for(var i=0;i<n;i++)for(var j=i+1;j<n;j++)P.push([i
 var N=6, PAIRS=pairsOf(6), DPAIRS=pairsOf(3);
 
 var CRIT=[
- {c:"C1",en:"Personal interest & fit",ar:"الاهتمام الشخصي والملاءمة",den:"Interest in the field, confidence in maths and science, expected difficulty, and whether the field suits the student.",dar:"الاهتمام بالمجال، والثقة في الرياضيات والعلوم، والصعوبة المتوقعة، ومدى ملاءمة التخصص للطالب."},
- {c:"C2",en:"Career prospects",ar:"الآفاق المهنية",den:"Job opportunities and security, salary, internships and industry links, alignment with Oman Vision 2040.",dar:"فرص العمل والأمان الوظيفي، والراتب، والتدريب والارتباط بالصناعة، والتوافق مع رؤية عُمان 2040."},
- {c:"C3",en:"Social influences",ar:"التأثيرات الاجتماعية",den:"Advice of family, friends, teachers and counsellors, current students and alumni, and online opinions.",dar:"رأي الأسرة والأصدقاء والمعلمين والمرشدين، والطلاب الحاليين والخريجين، والآراء على الإنترنت."},
- {c:"C4",en:"Program quality & content",ar:"جودة البرنامج ومحتواه",den:"Reputation of the IE program, curriculum and hands-on projects, ABET accreditation, faculty, research.",dar:"سمعة برنامج الهندسة الصناعية، والمناهج والمشاريع العملية، واعتماد ABET، وأعضاء هيئة التدريس، والبحث العلمي."},
- {c:"C5",en:"University image & environment",ar:"صورة الجامعة وبيئتها",den:"Reputation of SQU, location, campus life and facilities, studying in English.",dar:"سمعة جامعة السلطان قابوس، والموقع، والحياة الجامعية والمرافق، والدراسة باللغة الإنجليزية."},
- {c:"C6",en:"Financial considerations",ar:"الاعتبارات المالية",den:"Cost of study, allowances, financial support.",dar:"تكلفة الدراسة، والمخصصات، والدعم المالي."}
+ {c:"C1",en:"Student's interests & abilities",ar:"ميول الطالب وقدراته",den:"Whether the student likes this kind of work, feels confident in maths and science, and believes the major suits them and is not too hard.",dar:"هل يحب الطالب هذا النوع من العمل، ويثق في قدرته في الرياضيات والعلوم، ويشعر أن التخصص يناسبه وليس صعباً عليه."},
+ {c:"C2",en:"Jobs & career future",ar:"فرص العمل والمستقبل المهني",den:"How easy it is to get a job after graduating, the expected salary, internships in companies, and Oman's need for the field under Vision 2040.",dar:"سهولة الحصول على وظيفة بعد التخرج، وحاجة عُمان للتخصص ضمن رؤية 2040، والراتب المتوقع، والتدريب في الشركات."},
+ {c:"C3",en:"Advice from family & others",ar:"رأي الأسرة والمحيطين",den:"Advice from parents, friends, teachers and school counsellors, what current students and graduates say, and opinions seen online.",dar:"نصيحة الوالدين والأصدقاء والمعلمين والمرشد المدرسي، وكلام الطلاب الحاليين والخريجين، والآراء المنتشرة على الإنترنت."},
+ {c:"C4",en:"Quality of the IE programme",ar:"جودة البرنامج الدراسي",den:"Reputation of the IE department, its courses and hands-on projects, its international accreditation (ABET), and its professors.",dar:"سمعة قسم الهندسة الصناعية، ومواده ومشاريعه العملية، واعتماده الأكاديمي الدولي (ABET)، وأساتذته."},
+ {c:"C5",en:"University reputation & campus",ar:"سمعة الجامعة وبيئتها",den:"Standing of Sultan Qaboos University, its location, campus life and facilities, and the fact that teaching is in English.",dar:"مكانة جامعة السلطان قابوس، وموقعها، والحياة الجامعية ومرافقها، وأن الدراسة باللغة الإنجليزية."},
+ {c:"C6",en:"Cost & financial support",ar:"التكلفة والدعم المالي",den:"Costs of study and living, the monthly allowance, scholarships and other financial support.",dar:"تكاليف الدراسة والمعيشة، والمخصص الشهري، والبعثات وأي دعم مالي آخر."}
 ];
 var CHAN=[
- {c:"B1",en:"Short promotional video",ar:"فيديو تعريفي قصير",den:"A 2-3 minute video about IE on YouTube or social media.",dar:"فيديو مدته 2-3 دقائق عن الهندسة الصناعية على يوتيوب أو وسائل التواصل."},
- {c:"B2",en:"Social media accounts & posts",ar:"حسابات ومنشورات التواصل الاجتماعي",den:"Regular non-video posts on Instagram, X, TikTok, Snapchat.",dar:"منشورات منتظمة (غير الفيديو) على إنستغرام وإكس وتيك توك وسناب شات."},
- {c:"B3",en:"Informative content",ar:"المحتوى المعلوماتي",den:"Articles, infographics and guides explaining the field and careers.",dar:"مقالات وإنفوجرافيك وأدلة تشرح التخصص ومساراته المهنية."},
- {c:"B4",en:"Department website",ar:"موقع القسم الإلكتروني",den:"Official IE pages on the SQU website.",dar:"صفحات قسم الهندسة الصناعية الرسمية في موقع الجامعة."},
- {c:"B5",en:"School visits & open days",ar:"الزيارات المدرسية والأيام المفتوحة",den:"In-person visits to schools and campus open days.",dar:"زيارات للمدارس وأيام مفتوحة في الجامعة."},
- {c:"B6",en:"Live online sessions",ar:"الجلسات المباشرة عبر الإنترنت",den:"Webinars or online Q&A with IE students and faculty.",dar:"ندوات وجلسات أسئلة وأجوبة مباشرة مع طلاب وأساتذة التخصص."}
+ {c:"B1",en:"Short video about the major",ar:"فيديو قصير عن التخصص",den:"A 2-3 minute video explaining Industrial Engineering, posted on YouTube, TikTok or Instagram.",dar:"مقطع مدته 2-3 دقائق يشرح الهندسة الصناعية، يُنشر على يوتيوب أو تيك توك أو إنستغرام."},
+ {c:"B2",en:"Department social media accounts",ar:"حسابات القسم في وسائل التواصل",den:"Regular posts, photos and stories from the department on Instagram, X and Snapchat (not the video).",dar:"منشورات وصور وقصص منتظمة من القسم على إنستغرام وإكس وسناب شات (غير الفيديو)."},
+ {c:"B3",en:"Written explainers & infographics",ar:"شرح مكتوب وإنفوجرافيك",den:"Short articles or images that explain what IE is, what students study, and where graduates work.",dar:"مقالات قصيرة أو صور توضيحية تشرح ما هي الهندسة الصناعية، وماذا يدرس الطالب، وأين يعمل الخريج."},
+ {c:"B4",en:"Department page on the SQU website",ar:"صفحة القسم في موقع الجامعة",den:"The official department pages: study plan, admission requirements and contact details.",dar:"الصفحات الرسمية للقسم: الخطة الدراسية، وشروط القبول، وطرق التواصل."},
+ {c:"B5",en:"School visits & campus open days",ar:"زيارات المدارس والأيام المفتوحة",den:"A team from the department visits schools, or students visit the university and see the labs in person.",dar:"فريق من القسم يزور المدارس، أو يزور الطلاب الجامعة ويشاهدون المختبرات بأنفسهم."},
+ {c:"B6",en:"Live online Q&A sessions",ar:"لقاءات أسئلة مباشرة عبر الإنترنت",den:"A live session on Zoom or Teams where students ask IE professors and students questions and get answers directly.",dar:"جلسة مباشرة عبر زوم أو تيمز يسأل فيها الطلاب أساتذة وطلاب التخصص ويحصلون على الإجابة فوراً."}
 ];
 var DEMO=[CRIT[1],CRIT[0],CRIT[2]];
 var GROUPS=[{k:"F",en:"Faculty member",ar:"عضو هيئة تدريس"},{k:"G",en:"Recent IE graduate",ar:"خريج حديث من الهندسة الصناعية"},{k:"S",en:"Final-year IE student",ar:"طالب سنة أخيرة في الهندسة الصناعية"}];
@@ -296,11 +302,11 @@ var GENDERS=[{k:"M",en:"Male",ar:"ذكر"},{k:"W",en:"Female",ar:"أنثى"}];
 var INTENS={2:{ar:"أهم بقليل",en:"slightly more important"},3:{ar:"أهم بدرجة متوسطة",en:"moderately more important"},4:{ar:"أهم بين المتوسط والقوي",en:"moderately-to-strongly more important"},5:{ar:"أهم بقوة",en:"strongly more important"},6:{ar:"أهم بين القوي والقوي جداً",en:"strongly-to-very-strongly more important"},7:{ar:"أهم بقوة كبيرة",en:"very strongly more important"},8:{ar:"أهم بين القوي جداً والمطلق",en:"very-to-extremely more important"},9:{ar:"أهم بشكل مطلق",en:"extremely more important"}};
 
 var T={
- ar:{brandA:"مشروع تخرج",brandB:"الهندسة الصناعية، جامعة السلطان قابوس",lang:"English",
+ ar:{brandA:"مشروع تخرج",home:"الصفحة الرئيسية",homeShort:"الرئيسية",resume:"أكمل الاستبيان",codeLabel:"رمز الإجابة",factor:"العامل",brandB:"الهندسة الصناعية، جامعة السلطان قابوس",lang:"English",
   heroH:"ما الذي يجعل طالباً يختار الهندسة الصناعية؟",
   heroP:"شاركنا خبرتك في مقارنات قصيرة. إجاباتك ستبني رسالة أدق لطلاب المدارس في عُمان.",
   start:"ابدأ الاستبيان",how:"كيف يعمل",scaleHint:"اضغط على إحدى الكفتين لتزيد وزنها",
-  panA:"الآفاق المهنية",panB:"الاهتمام الشخصي",
+  panA:"فرص العمل",panB:"ميول الطالب",
   howH:"ثلاث خطوات بسيطة",howP:"نستخدم طريقة التحليل الهرمي (AHP). بدلاً من أن تضع نسباً مئوية لستة عوامل دفعة واحدة، تقارن بين عاملين في كل مرة، والحساب يتولى الباقي.",
   s1h:"قارن",s1p:"نعرض عليك عاملين، وتختار أيهما أهم وبأي درجة على مقياس من 1 إلى 9. النقطة في المنتصف تعني أنهما متساويان.",
   s2h:"تحقق",s2p:"إذا قلت إن (أ) أهم من (ب)، و(ب) أهم من (ج)، فالمنطقي أن (أ) أهم من (ج). يفحص الموقع هذا الاتساق وينبهك إن وجد تناقضاً.",
@@ -334,11 +340,11 @@ var T={
   invalid:function(n){return n+" سطر غير صالح تم تجاهله.";},none:"لا توجد رموز صالحة بعد. الصق الرموز في المربع ثم اضغط احسب النتائج.",
   respTable:"المشاركون",grp:"الفئة",gen:"الجنس",crA:"CR الجزء 1",crB:"CR الجزء 2",
   all:"جميع الخبراء",nUsed:function(a,b){return "مستخدم: "+a+" من "+b;},resA:"الجزء الأول: المعايير",resB:"الجزء الثاني: القنوات",noData:"لا توجد إجابات متسقة لهذه الفئة."},
- en:{brandA:"Final year project",brandB:"Industrial Engineering, Sultan Qaboos University",lang:"العربية",
+ en:{brandA:"Final year project",home:"Home page",homeShort:"Home",resume:"Continue the survey",codeLabel:"Response code",factor:"Factor",brandB:"Industrial Engineering, Sultan Qaboos University",lang:"العربية",
   heroH:"What makes a student choose Industrial Engineering?",
   heroP:"Share your experience through short comparisons. Your answers will shape a clearer message for Omani school students.",
   start:"Start the survey",how:"How it works",scaleHint:"Tap a pan to add weight to it",
-  panA:"Career prospects",panB:"Personal interest",
+  panA:"Jobs & career",panB:"Interests",
   howH:"Three simple steps",howP:"We use the Analytic Hierarchy Process (AHP). Instead of giving six factors percentages all at once, you compare two at a time and the maths does the rest.",
   s1h:"Compare",s1p:"You see two factors and choose which matters more, and by how much, on a 1 to 9 scale. The middle point means equal.",
   s2h:"Check",s2p:"If A matters more than B, and B more than C, then A should matter more than C. The site checks this consistency and flags contradictions.",
@@ -402,7 +408,7 @@ function reading(code,items,p){
   if(code===9)return '<span class="reading">'+esc(t("equal"))+'</span>';
   var a=code<9,inten=a?10-code:code-8,who=a?items[p[0]]:items[p[1]];
   return '<span class="reading">'+esc(nm(who))+' '+INTENS[inten][S.lang]+' ('+inten+')</span>';}
-function itemHTML(o,side){return '<div class="item '+side+'"><details><summary><span class="t">'+esc(nm(o))+'</span></summary><div class="def">'+esc(df(o))+'</div></details></div>';}
+function itemHTML(o,side){return '<div class="item '+side+'"><span class="t">'+esc(nm(o))+'</span><span class="def">'+esc(df(o))+'</span></div>';}
 function scaleHTML(name,code){
   var h='<div class="scale" role="radiogroup">';
   for(var c=1;c<=17;c++){var inten=c<9?10-c:(c===9?1:c-8),size=12+inten*2.2;
@@ -425,7 +431,7 @@ function barsHTML(items,w){return '<div class="bars">'+items.map(function(o,i){r
 
 /* ---------- landing ---------- */
 function scaleSVG(){
-  return '<svg class="scale-svg" viewBox="0 0 520 360" role="img" aria-label="'+esc(t("scaleHint"))+'">'+
+  return '<svg class="scale-svg" viewBox="0 0 520 360" role="group" aria-label="'+esc(t("scaleHint"))+'">'+
   '<defs><linearGradient id="post" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#8EBBF2"/><stop offset="1" stop-color="#1F6FD1"/></linearGradient>'+
   '<linearGradient id="beam" x1="0" x2="1"><stop offset="0" stop-color="#4C8FE0"/><stop offset=".5" stop-color="#CFE2FA"/><stop offset="1" stop-color="#4C8FE0"/></linearGradient>'+
   '<radialGradient id="glow"><stop offset="0" stop-color="#4C8FE0" stop-opacity=".55"/><stop offset="1" stop-color="#4C8FE0" stop-opacity="0"/></radialGradient></defs>'+
@@ -461,7 +467,7 @@ function renderLanding(){
   h+='</div><div class="facts reveal"><div class="fact"><b>10</b><span>'+esc(t("f1"))+'</span></div><div class="fact"><b>30</b><span>'+esc(t("f2"))+'</span></div><div class="fact"><b>'+esc(t("f3b"))+'</b><span>'+esc(t("f3"))+'</span></div></div></div></section>';
   h+='<section class="band"><div class="narrow reveal"><h2>'+esc(t("bandH"))+'</h2><p>'+esc(t("bandP"))+'</p><button class="btn light" type="button" data-start>'+esc(t("start"))+'</button></div></section>';
   landing.innerHTML=h;
-  landing.querySelectorAll("[data-start]").forEach(function(b){b.onclick=function(){openSurvey(0);};});
+  landing.querySelectorAll("[data-start]").forEach(function(b){if(inProgress()||(S.step===5&&!S.saved))b.textContent=t("resume");b.onclick=function(){openSurvey();};});
   DPAIRS.forEach(function(p,k){markWin("D"+k,S.D[k]);bindQ(landing,"D"+k,DEMO,p,function(c){S.D[k]=c;demoUpdate();});});
   demoUpdate(); initScale(); observe();
 }
@@ -520,6 +526,8 @@ function chrome(){
   document.documentElement.lang=S.lang;document.documentElement.dir=S.lang==="ar"?"rtl":"ltr";
   document.getElementById("brand").innerHTML='<b>'+esc(t("brandA"))+'</b><span>'+esc(t("brandB"))+'</span>';
   document.getElementById("langBtn").textContent=t("lang");
+  var hb=document.getElementById("homeBtn");hb.textContent=t("homeShort");hb.setAttribute("aria-label",t("home"));hb.classList.toggle("hidden",S.view==="landing");
+  document.getElementById("brand").setAttribute("aria-label",t("home"));
   document.getElementById("footNote").textContent=t("foot");
   document.getElementById("researcherLink").textContent=S.view==="research"?t("survey"):t("researcher");
   landing.classList.toggle("hidden",S.view!=="landing");surveyEl.classList.toggle("hidden",S.view==="landing");
@@ -528,8 +536,17 @@ function render(){chrome();
   if(S.view==="landing")return renderLanding();
   if(S.view==="research")return renderResearch();
   [renderIntro,function(){renderPart("A");},function(){renderCheck("A");},function(){renderPart("B");},function(){renderCheck("B");},renderDone][S.step]();}
-function openSurvey(step){S.view="survey";go(step);}
-function go(step){S.step=step;render();window.scrollTo(0,0);app.classList.remove("enter");void app.offsetWidth;app.classList.add("enter");app.focus({preventScroll:true});}
+function inProgress(){return S.step>=1&&S.step<=4;}
+function openSurvey(){S.view="survey";go(inProgress()||S.step===5?S.step:0);}
+var STORE_P="ie_ahp_progress_v1",restoring=false;
+function saveProgress(){try{if(S.step===5&&S.saved){localStorage.removeItem(STORE_P);return;}
+  localStorage.setItem(STORE_P,JSON.stringify({lang:S.lang,step:S.step,group:S.group,gender:S.gender,A:S.A,B:S.B,rid:S.rid||null}));}catch(e){}}
+function loadProgress(){try{var d=JSON.parse(localStorage.getItem(STORE_P)||"null");if(!d||!Array.isArray(d.A)||d.A.length!==15||!Array.isArray(d.B)||d.B.length!==15)return;
+  S.lang=d.lang==="en"?"en":"ar";S.step=Math.max(0,Math.min(5,d.step|0));S.group=d.group;S.gender=d.gender;S.A=d.A;S.B=d.B;S.rid=d.rid||null;}catch(e){}}
+function clearProgress(){try{localStorage.removeItem(STORE_P);}catch(e){}}
+function pushNav(){if(restoring)return;try{var st={view:S.view,step:S.step};var cur=history.state;if(cur&&cur.view===st.view&&cur.step===st.step)return;history.pushState(st,"");}catch(e){}}
+function goHome(){S.view="landing";render();pushNav();window.scrollTo(0,0);}
+function go(step){S.step=step;saveProgress();render();pushNav();window.scrollTo(0,0);app.classList.remove("enter");void app.offsetWidth;app.classList.add("enter");app.focus({preventScroll:true});}
 
 function renderIntro(){
   var g=GROUPS.map(function(x){return '<label class="chip"><input type="radio" name="grp" value="'+x.k+'"'+(S.group===x.k?" checked":"")+'><span>'+esc(nm(x))+'</span></label>';}).join("");
@@ -537,18 +554,18 @@ function renderIntro(){
   app.innerHTML='<h1>'+esc(t("profileH"))+'</h1><p class="lead">'+esc(t("profileP"))+'</p>'+
    '<div class="card"><label class="f">'+esc(t("who"))+'</label><div class="chips">'+g+'</div><label class="f">'+esc(t("gender"))+'</label><div class="chips">'+s+'</div></div>'+
    '<div class="err" id="err"></div><div class="btns"><button class="btn ghost" id="bk" type="button">'+esc(t("back"))+'</button><button class="btn" id="go" type="button">'+esc(t("begin"))+'</button></div>';
-  app.querySelectorAll('input[name=grp]').forEach(function(el){el.onchange=function(){S.group=el.value;};});
-  app.querySelectorAll('input[name=gen]').forEach(function(el){el.onchange=function(){S.gender=el.value;};});
-  document.getElementById("bk").onclick=function(){S.view="landing";render();window.scrollTo(0,0);};
+  app.querySelectorAll('input[name=grp]').forEach(function(el){el.onchange=function(){S.group=el.value;saveProgress();};});
+  app.querySelectorAll('input[name=gen]').forEach(function(el){el.onchange=function(){S.gender=el.value;saveProgress();};});
+  document.getElementById("bk").onclick=goHome;
   document.getElementById("go").onclick=function(){if(!S.group||!S.gender){document.getElementById("err").textContent=t("needProfile");return;}go(1);};
 }
 function renderPart(part){
   var items=part==="A"?CRIT:CHAN,codes=S[part],flags=S["flags"+part];
-  var h='<h1>'+esc(t(part==="A"?"partA":"partB"))+'</h1><p class="lead">'+esc(t(part==="A"?"partAq":"partBq"))+'</p><p class="note">'+esc(t("tapDef"))+'</p>';
+  var h='<h1>'+esc(t(part==="A"?"partA":"partB"))+'</h1><p class="lead">'+esc(t(part==="A"?"partAq":"partBq"))+'</p>';
   PAIRS.forEach(function(p,k){h+=qHTML(part+k,items,p,codes[k],(k+1)+" / 15",flags[k]);});
   h+='<div class="err" id="err"></div><div class="btns"><button class="btn ghost" id="bk" type="button">'+esc(t("back"))+'</button><button class="btn" id="ck" type="button">'+esc(t("check"))+'</button></div>';
   app.innerHTML=h;
-  PAIRS.forEach(function(p,k){markWin(part+k,codes[k]);bindQ(app,part+k,items,p,function(c){S[part][k]=c;delete S["flags"+part][k];setRuler();});});
+  PAIRS.forEach(function(p,k){markWin(part+k,codes[k]);bindQ(app,part+k,items,p,function(c){S[part][k]=c;delete S["flags"+part][k];setRuler();saveProgress();});});
   document.getElementById("bk").onclick=function(){go(part==="A"?0:2);};
   document.getElementById("ck").onclick=function(){var miss=S[part].filter(function(x){return x==null;}).length;
     if(miss){document.getElementById("err").textContent=t("missing")(miss);var f=S[part].findIndex(function(x){return x==null;});document.getElementById("q"+part+f).scrollIntoView({behavior:reduce?"auto":"smooth",block:"center"});return;}
@@ -574,34 +591,33 @@ var SENT={};
 function rid(){try{if(window.crypto&&crypto.randomUUID)return crypto.randomUUID();}catch(e){}return "r"+Date.now().toString(36)+Math.random().toString(36).slice(2,10);}
 function submit(payload,cb0){
   if(!SHEET_URL){cb0("none");return;}
-  var fired=false,to=setTimeout(function(){cb("fail");},25000);
+  var fired=false,to=setTimeout(function(){cb("fail");},30000);
   function cb(st){if(fired)return;fired=true;clearTimeout(to);cb0(st);}
-  var body=JSON.stringify(payload);
-  fetch(SHEET_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:body,redirect:"follow"})
-   .then(function(r){return r.json();}).then(function(d){cb(d&&d.ok?"ok":"fail");})
-   .catch(function(){fetch(SHEET_URL,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:body}).then(function(){cb("ok");},function(){cb("fail");});});
+  /* no-cors: the request reaches Apps Script and resolves when sent; the opaque reply is not read (Safari cannot read it after Google's redirect). Duplicate IDs are ignored server-side, so retries are safe. */
+  fetch(SHEET_URL,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(payload)})
+    .then(function(){cb("ok");},function(){cb("fail");});
 }
 function renderDone(){
   var code=encode(),RA=ahp(matrixFromVals(S.A.map(val),N,PAIRS)),RB=ahp(matrixFromVals(S.B.map(val),N,PAIRS));
   app.innerHTML='<svg class="done-mark" viewBox="0 0 72 72" aria-hidden="true"><circle cx="36" cy="36" r="34"/><path d="M22 37 l9 9 l19 -20" stroke="#fff" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>'+
-   '<h1 id="doneH">'+esc(SHEET_URL?t("savingH"):t("doneH"))+'</h1><p class="lead" id="doneP">'+esc(SHEET_URL?t("sending"):t("doneP"))+'</p><div id="sendRow"></div><textarea class="code" id="code" readonly>'+code+'</textarea>'+
+   '<h1 id="doneH">'+esc(SHEET_URL?t("savingH"):t("doneH"))+'</h1><p class="lead" id="doneP">'+esc(SHEET_URL?t("sending"):t("doneP"))+'</p><div id="sendRow"></div><textarea class="code" id="code" readonly aria-label="'+esc(t("codeLabel"))+'">'+code+'</textarea>'+
    '<div class="btns"><button class="btn" id="cp" type="button">'+esc(t("copy"))+'</button><button class="btn ghost" id="nw" type="button">'+esc(t("again"))+'</button></div>'+
    '<div class="card"><h2>'+esc(t("yourA"))+'</h2>'+barsHTML(CRIT,RA.w)+'</div><div class="card"><h2>'+esc(t("yourB"))+'</h2>'+barsHTML(CHAN,RB.w)+'</div>';
   var ta=document.getElementById("code");
   document.getElementById("cp").onclick=function(){copyText(code,this,ta);};
   if(SHEET_URL){
-    if(!S.rid)S.rid=rid();
+    if(!S.rid){S.rid=rid();saveProgress();}
     var payload={id:S.rid,code:code,crA:RA.CR.toFixed(4),crB:RB.CR.toFixed(4),lang:S.lang};
     var p=document.getElementById("doneP"),row=document.getElementById("sendRow");
     var show=function(st){
-      if(st==="ok"){SENT[code]=true;document.getElementById("doneH").textContent=t("doneHsaved");p.textContent=t("sent")+" "+t("doneP2");row.innerHTML="";}
+      if(st==="ok"){SENT[code]=true;S.saved=true;clearProgress();document.getElementById("doneH").textContent=t("doneHsaved");p.textContent=t("sent")+" "+t("doneP2");row.innerHTML="";}
       else{p.textContent=t("sendFail");document.getElementById("doneH").textContent=t("doneH");
         row.innerHTML='<div class="btns" style="margin-top:0;margin-bottom:12px"><button class="btn ghost" id="rt" type="button">'+esc(t("retry"))+'</button></div>';
         document.getElementById("rt").onclick=function(){p.textContent=t("sending");row.innerHTML="";submit(payload,show);};}
     };
     if(SENT[code])show("ok");else submit(payload,show);
   }
-  document.getElementById("nw").onclick=function(){S.group=null;S.gender=null;S.A=new Array(15).fill(null);S.B=new Array(15).fill(null);S.flagsA={};S.flagsB={};S.rid=null;S.view="landing";render();window.scrollTo(0,0);};
+  document.getElementById("nw").onclick=function(){S.group=null;S.gender=null;S.A=new Array(15).fill(null);S.B=new Array(15).fill(null);S.flagsA={};S.flagsB={};S.rid=null;S.saved=false;S.step=0;clearProgress();goHome();};
 }
 
 /* ---------- researcher view ---------- */
@@ -639,14 +655,14 @@ function analyse(){
   var out=document.getElementById("out");
   if(!rows.length){out.innerHTML='<p class="note">'+esc(t("none"))+'</p>';return;}
   var gname=function(k){return nm(GROUPS.filter(function(x){return x.k===k;})[0]);},sname=function(k){return nm(GENDERS.filter(function(x){return x.k===k;})[0]);};
-  var h='<h2>'+esc(t("respTable"))+' ('+rows.length+')</h2><div class="tablewrap"><table><thead><tr><th>#</th><th>'+t("grp")+'</th><th>'+t("gen")+'</th><th>'+t("crA")+'</th><th>'+t("crB")+'</th></tr></thead><tbody>';
+  var h='<h2>'+esc(t("respTable"))+' ('+rows.length+')</h2><div class="tablewrap" tabindex="0" role="region" aria-label="'+esc(t("respTable"))+'"><table><thead><tr><th>#</th><th>'+t("grp")+'</th><th>'+t("gen")+'</th><th>'+t("crA")+'</th><th>'+t("crB")+'</th></tr></thead><tbody>';
   rows.forEach(function(r,i){h+='<tr><td>'+(i+1)+'</td><td>'+esc(gname(r.g))+'</td><td>'+esc(sname(r.s))+'</td><td class="'+(r.crA<0.1?"yes":"no")+'">'+r.crA.toFixed(3)+'</td><td class="'+(r.crB<0.1?"yes":"no")+'">'+r.crB.toFixed(3)+'</td></tr>';});
   h+='</tbody></table></div>';
   var groups=GROUPS.map(function(g){return {label:nm(g),f:function(r){return r.g===g.k;},tot:rows.filter(function(r){return r.g===g.k;}).length};});
   groups.push({label:t("all"),f:function(){return true;},tot:rows.length});
   [["A",CRIT,"resA"],["B",CHAN,"resB"]].forEach(function(spec){var part=spec[0],items=spec[1];h+='<h2 style="margin-top:28px">'+esc(t(spec[2]))+'</h2>';
     var aggs=groups.map(function(g){return aggregate(rows,part,g.f);});
-    h+='<div class="tablewrap"><table><thead><tr><th></th>'+groups.map(function(g,i){return '<th>'+esc(g.label)+'<br><span class="note">'+esc(t("nUsed")(aggs[i].n,g.tot))+'</span></th>';}).join("")+'</tr></thead><tbody>';
+    h+='<div class="tablewrap" tabindex="0" role="region" aria-label="'+esc(t(spec[2]))+'"><table><thead><tr><th>'+esc(t("factor"))+'</th>'+groups.map(function(g,i){return '<th>'+esc(g.label)+'<br><span class="note">'+esc(t("nUsed")(aggs[i].n,g.tot))+'</span></th>';}).join("")+'</tr></thead><tbody>';
     items.forEach(function(o,i){h+='<tr><td style="text-align:start">'+esc(nm(o))+'</td>'+aggs.map(function(a){return '<td>'+(a.n?(a.w[i]*100).toFixed(1)+'%':'-')+'</td>';}).join("")+'</tr>';});
     h+='</tbody></table></div>';var all=aggs[aggs.length-1];
     h+='<div class="card"><strong>'+esc(t("all"))+'</strong>'+(all.n?barsHTML(items,all.w)+'<div class="cr">'+esc(t("cr"))+': '+all.CR.toFixed(3)+'</div>':'<p class="note">'+esc(t("noData"))+'</p>')+'</div>';});
@@ -657,9 +673,27 @@ function analyse(){
   document.getElementById("csv").onclick=function(){var ta=document.getElementById("tsv");ta.classList.remove("hidden");copyText(tsv,this,ta,t("csvDone"));};
 }
 
+/* ---------- keyboard & pointer behaviour ---------- */
+var lastPointer=0;
+document.addEventListener("pointerdown",function(){lastPointer=Date.now();},true);
+document.addEventListener("change",function(e){var el=e.target;if(el&&el.type==="radio"&&Date.now()-lastPointer<1500){el.blur();}},true);
+document.addEventListener("keydown",function(e){var el=e.target;
+  if(!el||el.type!=="radio")return;
+  var k=e.key,step=0;
+  if(k==="ArrowDown")step=90;else if(k==="ArrowUp")step=-90;else if(k==="PageDown")step=window.innerHeight*0.85;else if(k==="PageUp")step=-window.innerHeight*0.85;
+  if(!step)return;
+  e.preventDefault();window.scrollBy({top:step,behavior:reduce?"auto":"smooth"});
+},true);
+
 /* ---------- init ---------- */
-document.getElementById("langBtn").onclick=function(){S.lang=S.lang==="ar"?"en":"ar";render();};
-document.getElementById("researcherLink").onclick=function(){S.view=S.view==="research"?"landing":"research";render();window.scrollTo(0,0);};
+document.getElementById("langBtn").onclick=function(){S.lang=S.lang==="ar"?"en":"ar";saveProgress();render();};
+document.getElementById("researcherLink").onclick=function(){S.view=S.view==="research"?"landing":"research";render();pushNav();window.scrollTo(0,0);};
+document.getElementById("homeBtn").onclick=goHome;
+document.getElementById("brand").onclick=function(e){e.preventDefault();goHome();};
+window.addEventListener("popstate",function(e){var st=e.state;if(!st)return;
+  restoring=true;S.view=st.view||"landing";S.step=typeof st.step==="number"?st.step:S.step;render();restoring=false;window.scrollTo(0,0);});
+loadProgress();
+try{history.replaceState({view:S.view,step:S.step},"");}catch(e){}
 render();
 })();
 </script></body></html>
