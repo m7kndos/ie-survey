@@ -285,8 +285,8 @@ var CRIT=[
  {c:"C2",en:"Jobs & career future",ar:"فرص العمل والمستقبل المهني",den:"How easy it is to get a job after graduating, the expected salary, internships in companies, and Oman's need for the field under Vision 2040.",dar:"سهولة الحصول على وظيفة بعد التخرج، وحاجة عُمان للتخصص ضمن رؤية 2040، والراتب المتوقع، والتدريب في الشركات."},
  {c:"C3",en:"Advice from family & others",ar:"رأي الأسرة والمحيطين",den:"Advice from parents, friends, teachers and school counsellors, what current students and graduates say, and opinions seen online.",dar:"نصيحة الوالدين والأصدقاء والمعلمين والمرشد المدرسي، وكلام الطلاب الحاليين والخريجين، والآراء المنتشرة على الإنترنت."},
  {c:"C4",en:"Quality of the IE programme",ar:"جودة البرنامج الدراسي",den:"Reputation of the IE department, its courses and hands-on projects, its international accreditation (ABET), and its professors.",dar:"سمعة قسم الهندسة الصناعية، ومواده ومشاريعه العملية، واعتماده الأكاديمي الدولي (ABET)، وأساتذته."},
- {c:"C5",en:"University reputation & campus",ar:"سمعة الجامعة وبيئتها",den:"Standing of Sultan Qaboos University, its location, campus life and facilities, and the fact that teaching is in English.",dar:"مكانة جامعة السلطان قابوس، وموقعها، والحياة الجامعية ومرافقها، وأن الدراسة باللغة الإنجليزية."},
- {c:"C6",en:"Cost & financial support",ar:"التكلفة والدعم المالي",den:"Costs of study and living, the monthly allowance, scholarships and other financial support.",dar:"تكاليف الدراسة والمعيشة، والمخصص الشهري، والبعثات وأي دعم مالي آخر."}
+ {c:"C5",en:"University reputation & campus",ar:"سمعة الجامعة وبيئتها",den:"How Sultan Qaboos University compares with the other universities and colleges you can choose in unified admission: its standing, location, campus life and facilities, and teaching in English.",dar:"مكانة جامعة السلطان قابوس مقارنة بالجامعات والكليات الأخرى المتاحة في القبول الموحد: سمعتها، وموقعها، والحياة الجامعية ومرافقها، والدراسة باللغة الإنجليزية."},
+ {c:"C6",en:"Cost & financial support",ar:"التكلفة والدعم المالي",den:"Cost and financial support compared with the other options in unified admission: free tuition, the monthly allowance, scholarships, company sponsorship and any other support.",dar:"التكلفة والدعم المالي مقارنة بالخيارات الأخرى في القبول الموحد: الدراسة المجانية، والمكافأة الشهرية، والبعثات، ورعاية الشركات، وأي دعم مالي آخر."}
 ];
 var CHAN=[
  {c:"B1",en:"Short video about the major",ar:"فيديو قصير عن التخصص",den:"A 2-3 minute video explaining Industrial Engineering, posted on YouTube, TikTok or Instagram.",dar:"مقطع مدته 2-3 دقائق يشرح الهندسة الصناعية، يُنشر على يوتيوب أو تيك توك أو إنستغرام."},
@@ -335,7 +335,7 @@ var T={
   step:function(k){return ["البداية","الجزء الأول","الفحص","الجزء الثاني","الفحص","النهاية"][k];},
   count:function(a,b){return a+" من "+b+" مقارنة";},
   foot:"مشروع تخرج في الهندسة الصناعية، بإشراف د. عماد صمد",researcher:"عرض الباحثين",survey:"العودة للموقع",
-  rH:"تجميع النتائج",rP:"الصق رموز الإجابات هنا، رمزاً في كل سطر. تُحسب الأوزان لكل فئة من الإجابات المتسقة فقط (CR أقل من 0.10)، بدمج الأحكام بالمتوسط الهندسي.",
+  rH:"تجميع النتائج",rP:"الصق رموز الإجابات هنا، رمزاً في كل سطر. تُحسب الأوزان لكل فئة من الإجابات المتسقة فقط (CR أقل من الحد المختار أدناه)، بحساب أوزان كل مشارك ثم أخذ متوسطها الهندسي داخل الفئة (AIP).",
   analyse:"احسب النتائج",csv:"نسخ البيانات لملف Excel",csvDone:"تم النسخ. الصقه في ورقة Responses.",
   invalid:function(n){return n+" سطر غير صالح تم تجاهله.";},none:"لا توجد رموز صالحة بعد. الصق الرموز في المربع ثم اضغط احسب النتائج.",
   respTable:"المشاركون",grp:"الفئة",gen:"الجنس",crA:"CR الجزء 1",crB:"CR الجزء 2",
@@ -373,7 +373,7 @@ var T={
   step:function(k){return ["Start","Part one","Check","Part two","Check","Finish"][k];},
   count:function(a,b){return a+" of "+b+" comparisons";},
   foot:"Industrial Engineering final year project, supervised by Dr. Emad Summad",researcher:"Researcher view",survey:"Back to the site",
-  rH:"Aggregate the results",rP:"Paste the response codes here, one per line. Weights are computed per group from consistent responses only (CR below 0.10), aggregating judgments with the geometric mean.",
+  rH:"Aggregate the results",rP:"Paste the response codes here, one per line. Weights are computed per group from consistent responses only (CR below the cut-off chosen below), by computing each respondent\u2019s weights and then their geometric mean within the group (AIP).",
   analyse:"Calculate results",csv:"Copy data for Excel",csvDone:"Copied. Paste it into the Responses sheet.",
   invalid:function(n){return n+" invalid lines were ignored.";},none:"No valid codes yet. Paste codes in the box, then press Calculate results.",
   respTable:"Respondents",grp:"Group",gen:"Gender",crA:"CR part 1",crB:"CR part 2",
@@ -540,9 +540,9 @@ function inProgress(){return S.step>=1&&S.step<=4;}
 function openSurvey(){S.view="survey";go(inProgress()||S.step===5?S.step:0);}
 var STORE_P="ie_ahp_progress_v1",restoring=false;
 function saveProgress(){try{if(S.step===5&&S.saved){localStorage.removeItem(STORE_P);return;}
-  localStorage.setItem(STORE_P,JSON.stringify({lang:S.lang,step:S.step,group:S.group,gender:S.gender,A:S.A,B:S.B,rid:S.rid||null}));}catch(e){}}
+  localStorage.setItem(STORE_P,JSON.stringify({lang:S.lang,step:S.step,group:S.group,gender:S.gender,A:S.A,B:S.B,rid:S.rid||null,cr0A:S.cr0A,cr0B:S.cr0B}));}catch(e){}}
 function loadProgress(){try{var d=JSON.parse(localStorage.getItem(STORE_P)||"null");if(!d||!Array.isArray(d.A)||d.A.length!==15||!Array.isArray(d.B)||d.B.length!==15)return;
-  S.lang=d.lang==="en"?"en":"ar";S.step=Math.max(0,Math.min(5,d.step|0));S.group=d.group;S.gender=d.gender;S.A=d.A;S.B=d.B;S.rid=d.rid||null;}catch(e){}}
+  S.lang=d.lang==="en"?"en":"ar";S.step=Math.max(0,Math.min(5,d.step|0));S.group=d.group;S.gender=d.gender;S.A=d.A;S.B=d.B;S.rid=d.rid||null;S.cr0A=(typeof d.cr0A==="number")?d.cr0A:null;S.cr0B=(typeof d.cr0B==="number")?d.cr0B:null;}catch(e){}}
 function clearProgress(){try{localStorage.removeItem(STORE_P);}catch(e){}}
 function pushNav(){if(restoring)return;try{var st={view:S.view,step:S.step};var cur=history.state;if(cur&&cur.view===st.view&&cur.step===st.step)return;history.pushState(st,"");}catch(e){}}
 function goHome(){S.view="landing";render();pushNav();window.scrollTo(0,0);}
@@ -572,7 +572,7 @@ function renderPart(part){
     go(part==="A"?2:4);};
 }
 function renderCheck(part){
-  var res=worstPairs(S[part]),ok=res.R.CR<0.1,flags={};
+  var res=worstPairs(S[part]),ok=res.R.CR<0.1,flags={};if(S["cr0"+part]==null){S["cr0"+part]=res.R.CR;saveProgress();}
   if(!ok)res.top.forEach(function(x){flags[x.k]=x.s;});S["flags"+part]=flags;
   app.innerHTML='<h1>'+esc(t("checkH"))+'</h1><div class="verdict '+(ok?"ok":"bad")+'">'+esc(ok?t("ok"):t("bad"))+'</div>'+
    '<div class="cr">'+esc(t("cr"))+': '+res.R.CR.toFixed(3)+'</div>'+
@@ -607,7 +607,7 @@ function renderDone(){
   document.getElementById("cp").onclick=function(){copyText(code,this,ta);};
   if(SHEET_URL){
     if(!S.rid){S.rid=rid();saveProgress();}
-    var payload={id:S.rid,code:code,crA:RA.CR.toFixed(4),crB:RB.CR.toFixed(4),lang:S.lang};
+    var payload={id:S.rid,code:code,crA:RA.CR.toFixed(4),crB:RB.CR.toFixed(4),crA0:(S.cr0A!=null?S.cr0A:RA.CR).toFixed(4),crB0:(S.cr0B!=null?S.cr0B:RB.CR).toFixed(4),lang:S.lang};
     var p=document.getElementById("doneP"),row=document.getElementById("sendRow");
     var show=function(st){
       if(st==="ok"){SENT[code]=true;S.saved=true;clearProgress();document.getElementById("doneH").textContent=t("doneHsaved");p.textContent=t("sent")+" "+t("doneP2");row.innerHTML="";}
@@ -617,21 +617,24 @@ function renderDone(){
     };
     if(SENT[code])show("ok");else submit(payload,show);
   }
-  document.getElementById("nw").onclick=function(){S.group=null;S.gender=null;S.A=new Array(15).fill(null);S.B=new Array(15).fill(null);S.flagsA={};S.flagsB={};S.rid=null;S.saved=false;S.step=0;clearProgress();goHome();};
+  document.getElementById("nw").onclick=function(){S.group=null;S.gender=null;S.A=new Array(15).fill(null);S.B=new Array(15).fill(null);S.flagsA={};S.flagsB={};S.rid=null;S.saved=false;S.cr0A=null;S.cr0B=null;S.step=0;clearProgress();goHome();};
 }
 
 /* ---------- researcher view ---------- */
 var STORE="ie_ahp_codes_v1";
 function load(){try{return localStorage.getItem(STORE)||"";}catch(e){return "";}}
 function save(v){try{localStorage.setItem(STORE,v);}catch(e){}}
-function aggregate(rows,part,filter){var use=rows.filter(function(r){return filter(r)&&r["cr"+part]<0.1;});if(!use.length)return {n:0};
-  var vals=PAIRS.map(function(p,k){var s=0;use.forEach(function(r){s+=Math.log(val(r[part][k]));});return Math.exp(s/use.length);});
-  var R=ahp(matrixFromVals(vals,N,PAIRS));return {n:use.length,w:R.w,CR:R.CR};}
+var CRMAX=0.1;
+/* AIP (Forman & Peniwati 1998): weights of each consistent respondent, then the normalised geometric mean within the group. */
+function aggregate(rows,part,filter){var use=rows.filter(function(r){return filter(r)&&r["cr"+part]<CRMAX;});if(!use.length)return {n:0};
+  var g=new Array(N).fill(0);use.forEach(function(r){var w=ahp(matrixFromVals(r[part].map(val),N,PAIRS)).w;for(var i=0;i<N;i++)g[i]+=Math.log(w[i]);});
+  g=g.map(function(x){return Math.exp(x/use.length);});var sum=g.reduce(function(a,b){return a+b;},0);
+  return {n:use.length,w:g.map(function(x){return x/sum;})};}
 function renderResearch(){var txt=load();
   app.innerHTML='<h1>'+esc(t("rH"))+'</h1><p class="lead">'+esc(t("rP"))+'</p><textarea class="paste" id="paste" placeholder="IE1-FM-...">'+esc(txt)+'</textarea>'+
    (SHEET_URL?'<div class="card"><label class="f" for="rkey">'+esc(t("key"))+'</label><div class="btns" style="margin-top:8px"><input id="rkey" type="password" autocomplete="off" style="flex:1;min-width:180px;border:1px solid var(--line);border-radius:999px;padding:11px 16px;background:var(--card)"><button class="btn ghost" id="ld" type="button">'+esc(t("loadSheet"))+'</button></div><div class="note" id="ldmsg" style="margin-top:8px"></div></div>':'')+
-   '<div class="btns"><button class="btn" id="an" type="button">'+esc(t("analyse"))+'</button></div><div class="err" id="err"></div><div id="out"></div>';
-  document.getElementById("an").onclick=analyse;
+   '<div class="card"><label class="f">'+esc(S.lang==="ar"?"حد الاتساق المقبول":"Consistency cut-off")+'</label><div class="chips">'+[0.1,0.2].map(function(v){return '<label class="chip"><input type="radio" name="crcut" value="'+v+'"'+(CRMAX===v?" checked":"")+'><span>CR &lt; '+v.toFixed(2)+(v===0.1?(S.lang==="ar"?" (الأساسي)":" (main)"):(S.lang==="ar"?" (اختبار الحساسية)":" (sensitivity check)"))+'</span></label>';}).join("")+'</div></div><div class="btns"><button class="btn" id="an" type="button">'+esc(t("analyse"))+'</button></div><div class="err" id="err"></div><div id="out"></div>';
+  document.getElementById("an").onclick=analyse;app.querySelectorAll("input[name=crcut]").forEach(function(el){el.onchange=function(){CRMAX=parseFloat(el.value);analyse();};});
   if(SHEET_URL)document.getElementById("ld").onclick=function(){
     var btn=this,k=document.getElementById("rkey").value.trim(),m=document.getElementById("ldmsg"),t0=Date.now(),done=false;
     btn.disabled=true;m.textContent=t("loading")(0);
@@ -656,7 +659,7 @@ function analyse(){
   if(!rows.length){out.innerHTML='<p class="note">'+esc(t("none"))+'</p>';return;}
   var gname=function(k){return nm(GROUPS.filter(function(x){return x.k===k;})[0]);},sname=function(k){return nm(GENDERS.filter(function(x){return x.k===k;})[0]);};
   var h='<h2>'+esc(t("respTable"))+' ('+rows.length+')</h2><div class="tablewrap" tabindex="0" role="region" aria-label="'+esc(t("respTable"))+'"><table><thead><tr><th>#</th><th>'+t("grp")+'</th><th>'+t("gen")+'</th><th>'+t("crA")+'</th><th>'+t("crB")+'</th></tr></thead><tbody>';
-  rows.forEach(function(r,i){h+='<tr><td>'+(i+1)+'</td><td>'+esc(gname(r.g))+'</td><td>'+esc(sname(r.s))+'</td><td class="'+(r.crA<0.1?"yes":"no")+'">'+r.crA.toFixed(3)+'</td><td class="'+(r.crB<0.1?"yes":"no")+'">'+r.crB.toFixed(3)+'</td></tr>';});
+  rows.forEach(function(r,i){h+='<tr><td>'+(i+1)+'</td><td>'+esc(gname(r.g))+'</td><td>'+esc(sname(r.s))+'</td><td class="'+(r.crA<CRMAX?"yes":"no")+'">'+r.crA.toFixed(3)+'</td><td class="'+(r.crB<CRMAX?"yes":"no")+'">'+r.crB.toFixed(3)+'</td></tr>';});
   h+='</tbody></table></div>';
   var groups=GROUPS.map(function(g){return {label:nm(g),f:function(r){return r.g===g.k;},tot:rows.filter(function(r){return r.g===g.k;}).length};});
   groups.push({label:t("all"),f:function(){return true;},tot:rows.length});
@@ -665,7 +668,7 @@ function analyse(){
     h+='<div class="tablewrap" tabindex="0" role="region" aria-label="'+esc(t(spec[2]))+'"><table><thead><tr><th>'+esc(t("factor"))+'</th>'+groups.map(function(g,i){return '<th>'+esc(g.label)+'<br><span class="note">'+esc(t("nUsed")(aggs[i].n,g.tot))+'</span></th>';}).join("")+'</tr></thead><tbody>';
     items.forEach(function(o,i){h+='<tr><td style="text-align:start">'+esc(nm(o))+'</td>'+aggs.map(function(a){return '<td>'+(a.n?(a.w[i]*100).toFixed(1)+'%':'-')+'</td>';}).join("")+'</tr>';});
     h+='</tbody></table></div>';var all=aggs[aggs.length-1];
-    h+='<div class="card"><strong>'+esc(t("all"))+'</strong>'+(all.n?barsHTML(items,all.w)+'<div class="cr">'+esc(t("cr"))+': '+all.CR.toFixed(3)+'</div>':'<p class="note">'+esc(t("noData"))+'</p>')+'</div>';});
+    h+='<div class="card"><strong>'+esc(t("all"))+'</strong>'+(all.n?barsHTML(items,all.w)+'':'<p class="note">'+esc(t("noData"))+'</p>')+'</div>';});
   var gEN={F:"Faculty",G:"Recent graduate",S:"Final-year student"},sEN={M:"Male",W:"Female"};
   var tsv=rows.map(function(r,i){return ["R"+(i+1),gEN[r.g],sEN[r.s]].concat(r.A,r.B).join("\t");}).join("\n");
   h+='<div class="btns"><button class="btn ghost" id="csv" type="button">'+esc(t("csv"))+'</button></div><textarea class="paste hidden" id="tsv" readonly>'+tsv+'</textarea>';
